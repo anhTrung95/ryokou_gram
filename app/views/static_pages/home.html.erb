@@ -1,0 +1,4 @@
+<h1>StaticPages#home</h1>
+<p>Find me in app/views/static_pages/home.html.erb</p>
+<%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+  <%= image_tag current_user.avatar.url if current_user.avatar %>
