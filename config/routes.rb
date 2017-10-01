@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
 
     unauthenticated do
-      root 'devise/sessions#new', as: :unauthenticated_root
+      root 'static_pages#home', as: :unauthenticated_root
     end
   end
   # You can have the root of your site routed with "root"
