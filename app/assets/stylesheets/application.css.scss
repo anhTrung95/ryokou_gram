@@ -44,3 +44,17 @@
   margin-bottom: 15px;
   padding: 7px 9px;
 }
+.avt-navbar {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+   
+}
+.avt-navbar img{
+    display: inline-block;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+} 

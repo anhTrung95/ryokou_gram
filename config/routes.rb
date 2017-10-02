@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       root 'static_pages#home', as: :unauthenticated_root
     end
   end
+  get "users/:id", to: "users#show" 
+  get "profile", to: "users#show", as: :profile
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
