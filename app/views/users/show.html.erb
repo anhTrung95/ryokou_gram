@@ -1,0 +1,40 @@
+<div class="profile-border">
+    <div class="row">
+        <div class = "col-lg-4">
+            <div class="avt-rounded">
+                <%= image_tag (@user.avatar.url) if @user.avatar %>
+            </div>
+        </div>
+        <div class = "col-lg-8">
+            <div class="profile-details">
+                <div class="row">  
+                    <div class = "col-lg-6">
+                        Name : <%= @user.name %>
+                    </div>
+                    <div class = "col-lg-6">
+                        Phone : <%= @user.email %>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    </br>
+                </div>
+                <div class="row">  
+                    <div class = "col-lg-6">
+                        Email : <%= @user.email %>
+                    </div>
+                    <div class = "col-lg-6">
+                        Gender : <%= @user.gender %>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        </br>
+    </div>
+    <div>
+        User's reviews
+    </div>
+</div>
