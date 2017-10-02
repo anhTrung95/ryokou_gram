@@ -31,8 +31,29 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
-
-  <%= image_tag current_user.avatar.url if current_user.avatar %>
+  
+  <div class="field">
+    <%= f.label :name %> <br/>
+    <%= f.text_field :name, :value => @current_user.name, :required => true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :gender, "Gender:   " %>
+    <%= f.radio_button :gender, :value => false, :check => (current_user.gender == false ? true : false) %>
+    <%= f.label "Male" %>
+    <%= f.radio_button :gender, :value => true, :check => (current_user.gender == true ? true : false) %>
+    <%= f.label "Female" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone, :required => true %>
+  </div>
+  
+  <div class="avt-rounded">
+    <%= image_tag current_user.avatar.url if current_user.avatar %>
+  </div>
+  
   <div class="field">
     <%= f.label :avatar %><br />
     <%= f.file_field :avatar %>
