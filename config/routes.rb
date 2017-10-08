@@ -4,16 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  devise_scope :user do
-    authenticated :user do
-      root 'static_pages#home', as: :authenticated_root
-    end
 
-    unauthenticated do
-      root 'static_pages#home', as: :unauthenticated_root
-    end
-  end
-  get "users/:id", to: "users#show"
   resources :users
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

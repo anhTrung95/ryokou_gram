@@ -12,4 +12,4 @@ User.create!(name:  "Admin",
              gender: false,
              phone: "999999999",
              admin: true
-)
+             )
