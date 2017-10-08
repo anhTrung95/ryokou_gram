@@ -3,6 +3,7 @@
     <nav>
       <% if user_signed_in? %>
       <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'New admin', new_user_registration_path %></li>
         <li class="dropdown pull-right">
           <a href="#" data-toggle="dropdown" class="dropdown-toggle"> 
           <div class="row">

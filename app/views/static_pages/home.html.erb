@@ -3,9 +3,21 @@
 
 
   <% if user_signed_in? %>
+    <% if current_user.admin != true %>
     <h1>Welcome back, <%= current_user.email %>!</h1>
-    
-  
+    <% else %>
+      <h1> Users list </h1> <br/>
+      <% @users.each do |f| %>
+        <% if f.admin != true %>
+          <%= link_to f.name, f %> <br/>
+        <% end %>
+      <% end %>
+      <h1> Places list </h1> <br/>
+      <% @places.each do |f| %>
+        <%= link_to f.name, f %> <br/>
+      <% end %>
+      <%= link_to "Add new place", new_place_path %> <br/>
+    <% end %>
   <% else %>
     <h1>Welcome, new user!</h1>
     <p class="lead">
