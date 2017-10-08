@@ -39,9 +39,9 @@
   
   <div class="field">
     <%= f.label :gender, "Gender:   " %>
-    <%= f.radio_button :gender, :value => false, :check => (current_user.gender == false ? true : false) %>
+    <%= f.radio_button :gender, :value => false, :checked => (current_user.gender == false ? true : false) %>
     <%= f.label "Male" %>
-    <%= f.radio_button :gender, :value => true, :check => (current_user.gender == true ? true : false) %>
+    <%= f.radio_button :gender, :value => true, :checked => (current_user.gender == true ? true : false) %>
     <%= f.label "Female" %>
   </div>
   
