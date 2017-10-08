@@ -1,0 +1,19 @@
+<h1>Adding new place</h1>
+
+<%= form_for(@place) do |f| %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.text_area :overview, placeholder: "Decribes this place..." %>
+  </div>
+  <%= f.submit "Create", class: "btn btn-primary" %>
+<% end %>

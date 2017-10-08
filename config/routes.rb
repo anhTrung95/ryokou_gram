@@ -13,8 +13,10 @@ Rails.application.routes.draw do
       root 'static_pages#home', as: :unauthenticated_root
     end
   end
-  get "users/:id", to: "users#show" 
+  get "users/:id", to: "users#show"
   get "profile", to: "users#show", as: :profile
+
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
@@ -25,7 +27,7 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  resources :places
 
   # Example resource route with options:
   #   resources :products do
