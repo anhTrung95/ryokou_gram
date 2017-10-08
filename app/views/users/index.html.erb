@@ -1,0 +1,7 @@
+<h1>Users list</h1> <br/>
+
+<% @users.each do |f| %>
+    <% if f.admin != true %>
+        <%= link_to f.name, f %> <br/>
+    <% end %>
+<% end %>

@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @users = User.all
-    @places = Place.all
+    @users = User.last(5)
+    @places = Place.last(5)
   end
 end
