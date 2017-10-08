@@ -1,0 +1,15 @@
+<h1>All places</h1>
+
+<%= will_paginate %>
+
+<ul class="places">
+  <% @places.each do |place| %>
+    <li>
+      <%= link_to place.name, place %> |
+      <%= link_to "delete", place, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>
