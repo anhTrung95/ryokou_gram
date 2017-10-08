@@ -14,6 +14,6 @@ class UsersController < ApplicationController
 
     return if @user
     flash[:danger] = "User not found."
-    redirect_to root_url #cho ve trang chu, may muon lam the nao cung dc
+    redirect_to root_url
   end
 end

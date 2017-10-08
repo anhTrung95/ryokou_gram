@@ -40,7 +40,7 @@ class PlacesController < ApplicationController
 
     return if @places
     flash[:danger] = "Place not exist!"
-    #redirect_to root_url #cho ve trang chu, may muon lam the nao cung dc
+    redirect_to root_url 
   end
 
   def admin
