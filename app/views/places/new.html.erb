@@ -16,15 +16,15 @@
  
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :required => true %>
   </div>
   <div class="field">
     <%= f.label :address %><br>
-    <%= f.text_field :address %>
+    <%= f.text_field :address , :required => true%>
   </div>
   <div class="field">
     <%= f.label :image %><br>
-    <%= f.file_field :overview %>
+    <%= f.file_field :overview, :required => true %>
   </div>
   <br/>
   <div class="actions">
