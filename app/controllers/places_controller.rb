@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_action :find_place, only: %i{show destroy}
+  before_action :find_place, only: %i{show destroy edit update}
   before_action :admin, except: %i{index show}
   def index
     @places = Place.paginate page: params[:page]
@@ -10,10 +10,10 @@ class PlacesController < ApplicationController
   end
 
   def create
-    @place = Place.new params.require(:place).permit(:name, :address, :overview)
+    @place = Place.new(place_params)
     if @place.save
       flash[:success] = "Place created."
-      redirect_to places_url
+      redirect_to @place
     else
       render :new
     end
@@ -26,6 +26,12 @@ class PlacesController < ApplicationController
   end
 
   def update
+    if @place.update_attributes(place_params)
+      flash[:success] = "Edit place completed."
+      redirect_to @place
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -49,4 +55,10 @@ class PlacesController < ApplicationController
     flash[:danger] = "You are not admin."
     redirect_to places_url
   end
+  
+  private
+
+    def place_params
+      params.require(:place).permit(:name, :address, :overview)
+    end
 end

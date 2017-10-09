@@ -1,0 +1,39 @@
+<div class="border-form-div">
+<h1>Edit place</h1>
+
+<%= form_for @place, html: { multipart: true } do |f| %>
+  <% if @place.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
+ 
+      <ul>
+      <% @place.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+  
+  <div class="place-image">
+  <%= image_tag @place.overview.thumb.url if @place.overview %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :overview %>
+  </div>
+  <br/>
+  <div class="actions">
+    <%= f.submit "Edit place", :class =>"btn btn-primary"%>
+  </div>
+<% end %>
+</div>
