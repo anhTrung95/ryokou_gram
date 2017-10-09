@@ -1,14 +1,25 @@
-<p>
-  <strong>Name:</strong>
-  <%= @place.name %>
+<div class="profile-border">
+<div class="list-border">
+  
+  <h1><%= @place.name %></h1>
 </p>
+</div>
  
-<p>
-  <strong>Address:</strong>
-  <%= @place.address %>
-</p>
- 
+
+ <div class="list-border">
 <p>
   <strong>Image:</strong>
+  <br/>
+  <div class="place-image">
   <%= image_tag @place.overview.thumb.url if @place.overview %>
+  </div>
 </p>
+</div>
+
+<div class="list-border">
+
+  <strong>Address:</strong>
+  <%= @place.address %>
+
+</div>
+</div>
