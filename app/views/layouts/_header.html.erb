@@ -3,25 +3,24 @@
     <nav>
       <% if user_signed_in? %>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'New admin', new_user_registration_path %></li>
         <li class="dropdown pull-right">
-          <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+          <a href="#" data-toggle="dropdown" class="dropdown-toggle"> 
           <div class="row">
             <div class="col-lg-3">
               <div class="avt-navbar">
-                <%= image_tag current_user.avatar.url if current_user.avatar %>
-              </div>
+                <%= image_tag current_user.avatar.url if current_user.avatar %> 
+              </div> 
             </div>
             <div class="col-lg-9">
               <%= current_user.email %><b class="caret"></b>
             </div>
-
+            
           </div>
           </a>
           <ul class="dropdown-menu">
-            <li><%= link_to 'Profile', current_user %></li>
+            <li><%= link_to 'Profile', user_path(current_user.id) %></li>
             <li><%= link_to 'Edit account', edit_user_registration_path %></li>
-
+           
             <li class="divider"></li>
             <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
           </ul>
@@ -33,7 +32,7 @@
          <li> <%= link_to 'Sign up', new_user_registration_path %> </li>
       </ul
       <% end %>
-
+      
     </nav>
   </div>
 </header>
