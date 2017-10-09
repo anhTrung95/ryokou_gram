@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
   before_action :find_place, only: %i{show destroy}
-  before_action :admin, except: :index
+  before_action :admin, except: %i{index show}
   def index
     @places = Place.paginate page: params[:page]
   end
@@ -38,9 +38,9 @@ class PlacesController < ApplicationController
   def find_place
     @place = Place.find_by(id: params[:id])
 
-    return if @places
+    return if @place
     flash[:danger] = "Place not exist!"
-    redirect_to root_url 
+    redirect_to root_url
   end
 
   def admin

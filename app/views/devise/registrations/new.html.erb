@@ -29,8 +29,8 @@
   
   <div class="field">
       <%= f.label :gender, "Gender"  %>
-      <%= f.radio_button :gender, true %> <%= f.label :is_male, "Male" %>
-      <%= f.radio_button :gender, false %> <%= f.label :is_male, "Female" %>
+      <%= f.radio_button :gender, true %> <%= f.label :gender, "Male" %>
+      <%= f.radio_button :gender, false %> <%= f.label :gender, "Female" %>
   </div>
   
   <div class="field">
@@ -42,6 +42,13 @@
     <%= f.label :avatar %><br />
     <%= f.file_field :avatar %>
   </div>
+  <% if user_signed_in? %>
+    <% if current_user.admin == true %>
+        <%= f.hidden_field :admin, :value => true %>
+    <% end %>
+  <% else %>
+    <%= f.hidden_field :admin, :value => false %>
+  <% end %>
 
   <div class="actions">
     <%= f.submit "Sign up", :class =>"btn btn-primary"%>
