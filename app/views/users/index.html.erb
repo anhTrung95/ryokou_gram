@@ -1,7 +1,28 @@
 <h1>Users list</h1> <br/>
 
-<% @users.each do |f| %>
-    <% if f.admin != true %>
-        <%= link_to f.name, f %> <br/>
-    <% end %>
-<% end %>
+<% if @users.count == 0 %>
+
+	<h1>There are no users currently</h1>
+
+<% else %>	
+
+	<div class="row">
+
+		<% @users.each do |f| %>
+      
+			<div class="col-md-2">
+			  <a href="/users/<%= f.id %>">
+			    <div class="card">
+				    <div class ="avt-rounded" ><%= image_tag (f.avatar.url) if f.avatar %></div>
+				      <div class="container">
+				        <h4><b><%= f.name %></b></h4>
+				        <p><%= f.email %></p>
+				      </div>
+			    </div>
+			   </a>
+      </div>
+		<% end %>
+
+	</div>
+	
+<% end %>	

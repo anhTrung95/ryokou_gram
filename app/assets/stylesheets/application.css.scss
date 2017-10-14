@@ -19,6 +19,8 @@
 
 
 /* User sign in and sign forms. */
+
+
 .border-form-div {
   max-width: 300px;
   padding: 19px 29px 29px;
@@ -28,10 +30,15 @@
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.5);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.5);
+          box-shadow: 0 1px 2px rgba(0,0,0,.5);
 }
+
+.border-form-div .field {
+  margin: 5px;
+}
+
 .border-form-div .form-signin-heading,
 .border-form-div .checkbox {
   margin-bottom: 10px;
@@ -39,9 +46,10 @@
 .border-form-div input[type="text"],
 .border-form-div input[type="email"],
 .border-form-div input[type="password"] {
+  max-width: 80%;
   font-size: 16px;
   height: auto;
-  margin-bottom: 15px;
+  margin-bottom:0 auto 15px;
   padding: 7px 9px;
 }
 .avt-navbar {
@@ -54,7 +62,7 @@
 }
 .avt-navbar img{
     display: inline-block;
-    margin: 0 auto;
+    margin: 0;
     height: 100%;
     width: auto;
 } 
@@ -80,3 +88,4 @@
   width: 100px;
   height: auto;
 }
+
