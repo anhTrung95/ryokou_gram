@@ -1,21 +1,28 @@
 <h1>All places</h1>
 
-<% if current_user.admin %>
-  <%= link_to "Add place", new_place_path %>
-<% end %>
+<% if @places.count == 0 %>
 
-<%= will_paginate %>
+	<h1>There are no places currently</h1>
 
-<ul class="places">
-  <% @places.each do |place| %>
-    <li>
-      <%= link_to place.name, place %>
-      <% if current_user.admin %>
-       | <%= link_to "delete", place, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<% else %>	
 
-<%= will_paginate %>
+	<div class="row">
+
+		<% @places.each do |f| %>
+      
+			<div class="col-md-3">
+			  <a href="/places/<%= f.id %>">
+			    <div class="card">
+				    <div class ="image-size" ><%= image_tag f.overview.thumb.url if f.overview %></div>
+				      <div class="container">
+				        <h4><b><%= f.name %></b></h4>
+				        <p><%= f.address %></p>
+				      </div>
+			    </div>
+			   </a>
+      </div>
+		<% end %>
+
+	</div>
+	
+<% end %>	
