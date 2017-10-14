@@ -5,6 +5,7 @@
   <% if user_signed_in? %>
     <% if current_user.admin != true %>
     <h1>Welcome back, <%= current_user.email %>!</h1>
+    <%= render 'shared/review_form', places: @places %>
     <% else %>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="w3-sidebar w3-bar-block w3-light-grey" style="width:15%">
@@ -14,7 +15,7 @@
    <div class="avt-rounded">
                 <%= image_tag (current_user.avatar.url) if current_user.avatar %>
     </div>
-  
+
   <%= link_to "Add new place", new_place_path %> <br/>
 
   <!--<div class="w3-panel w3-blue-grey w3-display-container">-->
@@ -28,7 +29,7 @@
 
 <div class="w3-container">
    <div class="row">
- 
+
       <div class="col-lg-6">
         <div class="list-border">
         <h1> Users list </h1> <br/>
@@ -36,7 +37,7 @@
             <div class="col-lg-1">
               <h3>ID</h3>
             </div>
-            
+
             <div class="col-lg-4">
             <h3>Name</h3>
             </div>
@@ -65,7 +66,7 @@
           </div>
           <% end %>
         <% end %>
-        
+
         <%= link_to "See all users", users_path %>
         </div>
       </div>
@@ -76,7 +77,7 @@
             <div class="col-lg-1">
               <h3>ID</h3>
             </div>
-            
+
             <div class="col-lg-4">
             <h3>Name</h3>
             </div>
@@ -99,7 +100,7 @@
             </div>
         </div>
       <% end %>
-      
+
       <%= link_to "See all places", places_path %> <br/>
       </div>
       </div>
@@ -107,7 +108,7 @@
 </div>
 
 
-   
+
     <% end %>
   <% else %>
     <h1>Welcome, new user!</h1>

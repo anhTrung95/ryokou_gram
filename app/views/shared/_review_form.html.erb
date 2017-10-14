@@ -1,0 +1,12 @@
+<%= form_for(@review) do |f| %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Write new review..." %>
+  </div>
+  <div class="field">
+    <%= f.select :place_id, options_for_select(places.collect{|p| [p.name, p.id]}) %>
+  </div>
+  <div class="field">
+    <%= f.select :rate, options_for_select(1..5) %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
