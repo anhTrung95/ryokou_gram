@@ -1,10 +1,10 @@
 <div class="profile-border">
 <div class="list-border">
-  
+
   <h1><%= @place.name %></h1>
 </p>
 </div>
- 
+
 
  <div class="list-border">
 <p>
@@ -25,3 +25,5 @@
 
 <%= link_to "Edit this place!", edit_place_url, class: "btn btn-info" %>
 </div>
+
+<%= render 'shared/review_form' %>

@@ -20,6 +20,9 @@ class PlacesController < ApplicationController
   end
 
   def show
+    if user_signed_in?
+      @review = current_user.reviews.build
+    end
   end
 
   def edit
@@ -55,7 +58,7 @@ class PlacesController < ApplicationController
     flash[:danger] = "You are not admin."
     redirect_to places_url
   end
-  
+
   private
 
     def place_params
