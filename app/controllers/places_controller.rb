@@ -23,6 +23,7 @@ class PlacesController < ApplicationController
     if user_signed_in?
       @review = current_user.reviews.build
     end
+    @reviews = @place.reviews.paginate(page: params[:page])
   end
 
   def edit

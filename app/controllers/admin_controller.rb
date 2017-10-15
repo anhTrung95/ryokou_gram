@@ -1,10 +1,13 @@
 class AdminController < ApplicationController
+    before_action :admin
+    
     def index
         @users = User.last(5)
-        @places = Place.last(5)
+        @users = user.last(5)
     end
     
-    private 
+    private
+    
     def admin
         return if current_user.admin
         

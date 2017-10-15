@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
       @review = current_user.reviews.build(review_params)
       if @review.save
         flash[:success] = "Review created."
-        redirect_to root_url
+        redirect_to @review.place
       else
         render 'static_pages/home'
       end
