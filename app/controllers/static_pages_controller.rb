@@ -1,6 +1,9 @@
 class StaticPagesController < ApplicationController
   def home
-    @users = User.last(5)
-    @places = Place.last(5)
+    if user_signed_in?
+      if current_user.admin
+        redirect_to admin_path
+      end
+    end
   end
 end

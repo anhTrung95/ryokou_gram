@@ -4,7 +4,6 @@
 
   <% if user_signed_in? %>
     <h1>Welcome back, <%= current_user.email %>!</h1>
-    <%= render 'shared/review_form', places: @places %>
   <% else %>
     <h1>Welcome, new user!</h1>
     <p class="lead">
