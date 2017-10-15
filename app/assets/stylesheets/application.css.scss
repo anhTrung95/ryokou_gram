@@ -53,8 +53,8 @@
   padding: 7px 9px;
 }
 .avt-navbar {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
@@ -85,7 +85,8 @@
   height: auto;
 }
 .thumbnail img{
-  width: 100px;
-  height: auto;
+  width: auto;
+  height: 100px !important;
+ 
 }
 

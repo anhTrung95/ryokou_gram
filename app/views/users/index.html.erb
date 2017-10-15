@@ -13,14 +13,17 @@
 			<div class="col-md-2">
 			  <a href="/users/<%= f.id %>">
 			    <div class="card">
+			    
 				    <div class ="avt-rounded" ><%= image_tag (f.avatar.url) if f.avatar %></div>
 				      <div class="user-container">
 				        <h4><b><%= f.name %></b></h4>
 				        <p><%= f.email %></p>
 				      </div>
+				      
 			    </div>
 			   </a>
-      </div>
+			   <br/>
+      		</div>
 		<% end %>
 
 	</div>
