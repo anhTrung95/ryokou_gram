@@ -3,7 +3,7 @@ class AdminController < ApplicationController
     
     def index
         @users = User.last(5)
-        @users = user.last(5)
+        @places = Place.last(5)
     end
     
     private
