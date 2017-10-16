@@ -1,3 +1,95 @@
 // Place all the styles related to the Reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Style inputs, select elements and textareas */
+.review-form input[type=text], select, textarea{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Style the label to display next to the inputs */
+.review-form label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+/* Style the submit button */
+.review-form input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+/* Style the container */
+.review-form-container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+/* Floating column for labels: 25% width */
+.review-form-col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+/* Floating column for inputs: 75% width */
+.review-form-col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.review-form-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+  .review-form-col-25, .review-form-col-75, .review-form input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+.content-box {
+    /* Add shadows to create the "card" effect */
+    margin: 15px 0px;
+    padding: 0px 15px;
+}
+
+.card a {
+  text-decoration: none;
+  color: black;
+}
+
+.card a:hover {
+  text-decoration: none;
+  color: blue;
+}
+
+.review-footer {
+  margin-left: 200px; 
+  border-top: 2px solid rgba(0,0,0,0.2);
+}
+
+.review-footer p {
+  padding-left: 0px; 
+  left: 0px; 
+  text-align: left;
+  color: rgb(119, 119, 119);
+  font-style: italic;
+}

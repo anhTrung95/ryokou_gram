@@ -1,20 +1,29 @@
-<div class="row">
-  <div class="col-lg-3"></div>
-  <div class="col-lg-6">
 <div class="card">
-
-   
-  
- 
-  
-  <%= link_to review.user.name, review.user %> has reviewed <%= link_to review.place.name, review.place %> <%= time_ago_in_words(review.created_at) %> ago.<br/>
-   Rate: <div class="review-rating" data-score="<%=review.rate %>"></div>
-   Content:<span class="content"><%= review.content %></span><BR>
-   Tag:   <div><%= render review.tags %></div>  
-
-
-</div>
-</div>
+  <div class="media">
+    <div class="media-left media-top">
+      <div class="avt-rounded">
+        <%= image_tag (review.user.avatar.url) if review.user.avatar %>
+      </div>
+    </div>
+    <div class="media-body">
+        <div class = "media-header">
+          <span style="left: 0; max-width: 50%; height: auto; position: relative;">
+          <h4 style="text-align: left"><%= link_to review.user.name, review.user %></h4>
+          </span>
+            <span class="review-rating" data-score=<%=review.rate %> ></span>
+        </div>
+        <div class="media-left" style="width: 100%">
+          <span class="content-box" style="align:left"><%= review.content %></span>
+          <div class="content-box" style="text-align: left; bottom: 0px">
+            Tags:   <span><%= render review.tags %></span> 
+          </div>
+        </div>
+        
+    </div>
+  </div>
+  <div class="fixed-bottom review-footer"> 
+    <p>On <%= link_to review.place.name, review.place %> <%= time_ago_in_words(review.created_at) %> ago</p>
+  </div>
 </div>
 <script>
     $('.review-rating').raty({

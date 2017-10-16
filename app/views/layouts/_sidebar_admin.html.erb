@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <div class="w3-sidebar w3-bar-block w3-light-grey" style="width:15%">
+      <div class="w3-container w3-dark-grey">
+      <h4><%= current_user.name %></h4>
+      </div>
+      <div class="avt-rounded">
+        <%= image_tag (current_user.avatar.url) if current_user.avatar %>
+      </div>
+
+      <%= link_to "Add new place", new_place_path %> <br/>
+
+  <!--<div class="w3-panel w3-blue-grey w3-display-container">-->
+  <!--  <span onclick="this.parentElement.style.display='none'" class="w3-button w3-blue-grey w3-display-topright">&times;</span>-->
+  <!--  <p>Lorem ipsum box...</p>-->
+  <!--</div>-->
+
+    </div>

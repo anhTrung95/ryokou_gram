@@ -1,22 +1,35 @@
-<div class="border-form-div">
- 
-<%= form_for(@review) do |f| %>
-  <div class="field">
-    <%= f.text_area :content, placeholder: "Write new review..." %>
+<%= form_for(@review, :html => {:class => 'form-horizontal'}) do |f| %>
+  <div class="form-group">
+    <div class="col-md-3 control-label">
+      <%= f.label :rate %>
+    </div>
+    <div class="col-md-9">
+      <div class="rating-form">
+        <%= f.hidden_field :rate %>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :tag_list, "Các tag được ngăn cách bởi dấu phẩy" %><br />
-    <%= f.text_field :tag_list,  value: f.object.tag_list.to_s %>
+  <div class="form-group">
+    <div class="col-md-3 control-label">
+      <%= f.label :content %>
+    </div>
+    <div class="col-md-9">
+      <%= f.text_area :content, placeholder: "Write new review..." %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-3 control-label">
+      <%= f.label :tag_list %>
+    </div>
+    <div class="col-md-9">
+      <%= f.text_field :tag_list,  value: f.object.tag_list.to_s, :class=> 'form-control' %>
+    </div>
   </div>
   <div class="field">
     <%= f.hidden_field :place_id, value: @place.id %>
   </div>
-  <div class="rating-form">
-    <%= f.hidden_field :rate %>
-  </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
-</div>
 
 <script>
     $('.rating-form').raty({

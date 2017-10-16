@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-
+  
   def create
     if user_signed_in?
       @review = current_user.reviews.build(review_params)
@@ -7,7 +7,8 @@ class ReviewsController < ApplicationController
         flash[:success] = "Review created."
         redirect_to @review.place
       else
-        render 'static_pages/home'
+        flash[:error] = "Please rate the place"
+        redirect_to @review.place
       end
     else
       flash[:error] = "Please log in first."
