@@ -7,13 +7,19 @@
     </div>
     <div class="media-body">
         <div class = "media-header">
+          <div class = "row">
+          <div class = "col-lg-9">
           <span style="left: 0; max-width: 50%; height: auto; position: relative;">
           <h4 style="text-align: left"><%= link_to review.user.name, review.user %></h4>
           </span>
-            <span class="review-rating" data-score=<%=review.rate %> ></span>
+          </div>
+          <div class = "col-lg-3">
+            <div class="review-rating" data-score=<%=review.rate %> ></div>
+            </div>
+          </div>
         </div>
         <div class="media-left" style="width: 100%">
-          <span class="content-box" style="align:left"><%= review.content %></span>
+          <span class="content-box"><%= review.content %></span>
           <div class="content-box" style="text-align: left; bottom: 0px">
             Tags:   <span><%= render review.tags %></span> 
           </div>
