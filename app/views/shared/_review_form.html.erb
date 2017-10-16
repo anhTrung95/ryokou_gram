@@ -1,18 +1,27 @@
-<div class="border-form-div">
- 
 <%= form_for(@review) do |f| %>
-  <div class="field">
-    <%= f.text_area :content, placeholder: "Write new review..." %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= f.label :rate %>
+    </div>
+    <div class="col-md-9">
+      <div class="rating-form">
+        <%= f.hidden_field :rate %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <%= f.label :content %>
+    </div>
+    <div class="col-md-9">
+      <%= f.text_area :content, placeholder: "Write new review..." %>
+    </div>
   </div>
   <div class="field">
     <%= f.hidden_field :place_id, value: @place.id %>
   </div>
-  <div class="rating-form">
-    <%= f.hidden_field :rate %>
-  </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
-</div>
 
 <script>
     $('.rating-form').raty({

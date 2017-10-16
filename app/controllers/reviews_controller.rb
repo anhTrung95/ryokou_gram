@@ -7,7 +7,8 @@ class ReviewsController < ApplicationController
         flash[:success] = "Review created."
         redirect_to @review.place
       else
-        render 'static_pages/home'
+        flash[:error] = "Please rate the place"
+        redirect_to @review.place
       end
     else
       flash[:error] = "Please log in first."
