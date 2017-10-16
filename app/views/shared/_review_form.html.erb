@@ -1,6 +1,6 @@
-<%= form_for(@review) do |f| %>
-  <div class="row">
-    <div class="col-md-3">
+<%= form_for(@review, :html => {:class => 'form-horizontal'}) do |f| %>
+  <div class="form-group">
+    <div class="col-md-3 control-label">
       <%= f.label :rate %>
     </div>
     <div class="col-md-9">
@@ -9,12 +9,20 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-3">
+  <div class="form-group">
+    <div class="col-md-3 control-label">
       <%= f.label :content %>
     </div>
     <div class="col-md-9">
       <%= f.text_area :content, placeholder: "Write new review..." %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-3 control-label">
+      <%= f.label :tag_list %>
+    </div>
+    <div class="col-md-9">
+      <%= f.text_field :tag_list,  value: f.object.tag_list.to_s, :class=> 'form-control' %>
     </div>
   </div>
   <div class="field">

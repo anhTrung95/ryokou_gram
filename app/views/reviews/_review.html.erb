@@ -12,9 +12,13 @@
           </span>
             <span class="review-rating" data-score=<%=review.rate %> ></span>
         </div>
-        <div class="media-left">
+        <div class="media-left" style="width: 100%">
           <span class="content-box" style="align:left"><%= review.content %></span>
+          <div class="content-box" style="text-align: left; bottom: 0px">
+            Tags:   <span><%= render review.tags %></span> 
+          </div>
         </div>
+        
     </div>
   </div>
   <div class="fixed-bottom review-footer"> 
