@@ -7,12 +7,10 @@
     </div>
     <div class="media-body">
         <div class = "media-header">
-          <span style="left: 0; max-width: 50%; height: auto">
+          <span style="left: 0; max-width: 50%; height: auto; position: relative;">
           <h4 style="text-align: left"><%= link_to review.user.name, review.user %></h4>
           </span>
-          <span >
-            <span class="review-rating" style="right: 0; text-align: right; max-width: 50%" data-score=<%=review.rate %> ></span>
-          </span>
+            <span class="review-rating" data-score=<%=review.rate %> ></span>
         </div>
         <div class="media-left">
           <span class="content-box" style="align:left"><%= review.content %></span>
