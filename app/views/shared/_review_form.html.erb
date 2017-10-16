@@ -5,6 +5,10 @@
     <%= f.text_area :content, placeholder: "Write new review..." %>
   </div>
   <div class="field">
+    <%= f.label :tag_list, "Các tag được ngăn cách bởi dấu phẩy" %><br />
+    <%= f.text_field :tag_list,  value: f.object.tag_list.to_s %>
+  </div>
+  <div class="field">
     <%= f.hidden_field :place_id, value: @place.id %>
   </div>
   <div class="rating-form">

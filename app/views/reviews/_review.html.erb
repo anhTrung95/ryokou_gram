@@ -9,7 +9,10 @@
   
   <%= link_to review.user.name, review.user %> has reviewed <%= link_to review.place.name, review.place %> <%= time_ago_in_words(review.created_at) %> ago.<br/>
    Rate: <div class="review-rating" data-score="<%=review.rate %>"></div>
-   Content:<span class="content"><%= review.content %></span>
+   Content:<span class="content"><%= review.content %></span><BR>
+   Tag:   <div><%= render review.tags %></div>  
+
+
 </div>
 </div>
 </div>
