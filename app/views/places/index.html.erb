@@ -4,12 +4,12 @@
 
 	<h1>There are no places currently</h1>
 
-<% else %>	
+<% else %>
 
 	<div class="row">
 
 		<% @places.each do |f| %>
-      
+
 			<div class="col-md-3">
 			  <a href="/places/<%= f.id %>">
 			    <div class="card">
@@ -17,6 +17,7 @@
 				      <div class="place-container">
 				        <h4><b><%= f.name %></b></h4>
 				        <p><%= f.address %></p>
+				        <p><%= f.point/f.reviews.count %></p>
 				      </div>
 			    </div>
 			   </a>
@@ -24,5 +25,5 @@
 		<% end %>
 
 	</div>
-	
-<% end %>	
+
+<% end %>

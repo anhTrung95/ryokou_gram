@@ -21,13 +21,28 @@
         <div class="media-left" style="width: 100%">
           <span class="content-box"><%= review.content %></span>
           <div class="content-box" style="text-align: left; bottom: 0px">
-            Tags:   <span><%= render review.tags %></span> 
+            Tags:   <span><%= render review.tags %></span>
           </div>
         </div>
-        
+        <div>
+          <% if current_user %>
+            <% if current_user.voted_for? review %>
+              <%= link_to unlike_review_path(review), method: :put do %>
+                Unlike
+                <%= review.get_upvotes.size %>
+              <% end %>
+            <% else %>
+              <%= link_to like_review_path(review), method: :put do %>
+                Like
+                <%= review.get_upvotes.size %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+
     </div>
   </div>
-  <div class="fixed-bottom review-footer"> 
+  <div class="fixed-bottom review-footer">
     <p>On <%= link_to review.place.name, review.place %> <%= time_ago_in_words(review.created_at) %> ago</p>
   </div>
 </div>
@@ -39,6 +54,6 @@
       },
       precision  : true,
       path: '/assets/'
-        
+
     });
 </script>
