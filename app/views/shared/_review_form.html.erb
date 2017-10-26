@@ -1,5 +1,5 @@
 <div class="border-form-div large-form">
- 
+
 <%= form_for(@review) do |f| %>
   <div class="field">
     <%= f.label :tag_list, "Tags" %><br />
@@ -22,9 +22,9 @@
 <script>
     $('.rating-form').raty({
 
-      
+
       path: '/assets/',
       scoreName: 'review[rate]'
-        
+
     });
 </script>
