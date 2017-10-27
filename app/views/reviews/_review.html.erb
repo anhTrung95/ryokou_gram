@@ -44,6 +44,20 @@
   </div>
   <div class="fixed-bottom review-footer">
     <p>On <%= link_to review.place.name, review.place %> <%= time_ago_in_words(review.created_at) %> ago</p>
+    <h2>コメントフォーム</h2>
+<%= form_for Comment.new do |f| %>
+<div class= "field">
+<%= f.label :content %><br>
+<%= f.text_field :content %>
+<%= f.hidden_field :review_id, :value => review.id %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+</div>
+<div class="actions">
+<%= f.submit %>
+</div>
+<% end %>
+<h2>コメント一覧</h2>
+<%= render review.comments %>
   </div>
 </div>
 <script>
