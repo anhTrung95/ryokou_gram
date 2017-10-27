@@ -17,7 +17,9 @@
 				      <div class="place-container">
 				        <h4><b><%= f.name %></b></h4>
 				        <p><%= f.address %></p>
+				        <% if f.reviews.count != 0 %>
 				        <p><%= f.point/f.reviews.count %></p>
+				        <% end %>
 				      </div>
 			    </div>
 			   </a>
