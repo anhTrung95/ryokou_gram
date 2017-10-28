@@ -21,9 +21,15 @@ class PlacesController < ApplicationController
 
   def show
     if user_signed_in?
-      @review = current_user.reviews.build
+      @review = Review.where(user_id: current_user.id, place_id: @place.id)
+      if @review.exists?
+        @review = @review.first
+        @reviews = Review.where(place_id: @place.id).where.not(user_id: current_user.id).paginate(page: params[:page])
+      else
+        @review = current_user.reviews.build
+        @reviews = @place.reviews.paginate(page: params[:page])
+      end
     end
-    @reviews = @place.reviews.paginate(page: params[:page])
   end
 
   def edit
