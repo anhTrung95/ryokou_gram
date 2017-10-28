@@ -5,7 +5,7 @@ class Review < ActiveRecord::Base
   acts_as_taggable_on :tags
   acts_as_votable
   scope :order_desc, ->{order created_at: :desc}
-
+  scope :without_review, lambda{|review| review ? {:conditions => ["id != ?", review.id]} : {} }
   validates :user_id, presence: true
   validates :rate, presence: true
 end

@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-
+  before_action :set_review, only: [:edit, :destroy, :update]
   def create
     if user_signed_in?
       @review = current_user.reviews.build(review_params)
@@ -19,9 +19,17 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    if @review.update_attributes(review_params)
+      flash[:success] = "Edit review completed."
+      redirect_to @review.place
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+    @review.destroy
+    redirect_to place_path(@review.place)
   end
 
   def like
@@ -40,5 +48,9 @@ class ReviewsController < ApplicationController
 
     def review_params
       params.require(:review).permit(:rate, :content, :place_id, :tag_list)
+    end
+    
+    def set_review
+      @review = Review.find(params[:id])
     end
 end

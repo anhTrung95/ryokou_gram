@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20171027021752) do
 
   add_index "reviews", ["place_id"], name: "index_reviews_on_place_id"
   add_index "reviews", ["user_id", "place_id", "created_at"], name: "index_reviews_on_user_id_and_place_id_and_created_at"
+  add_index "reviews", ["user_id", "place_id"], name: "index_reviews_on_user_id_and_place_id", unique: true
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
 
   create_table "taggings", force: :cascade do |t|
