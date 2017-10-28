@@ -43,7 +43,11 @@
     </div>
   </div>
   <div class="fixed-bottom review-footer">
-    <p>On <%= link_to review.place.name, review.place %> <%= time_ago_in_words(review.created_at) %> ago</p>
+    <span style="float: left">On <%= link_to review.place.name, review.place %> <%= time_ago_in_words(review.created_at) %> ago</span>
+    <% if current_user.id == review.user_id %>
+    <span style="float: right" ><%= link_to "Edit", edit_review_path(review.id) %> | <%= link_to "Delete", review_path(review.id), :method => :delete%></span>
+    <% end %>
+  </div>
     <h2>コメントフォーム</h2>
 <%= form_for Comment.new do |f| %>
 <div class= "field">
@@ -55,11 +59,11 @@
 <div class="actions">
 <%= f.submit %>
 </div>
-<% end %>
 <h2>コメント一覧</h2>
 <%= render review.comments %>
-  </div>
+
 </div>
+<% end %>
 <script>
     $('.review-rating').raty({
       readOnly: true,

@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-
+  before_action :set_review, only: [:edit, :destroy]
   def create
     if user_signed_in?
       @review = current_user.reviews.build(review_params)
@@ -19,9 +19,20 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+      if @review.update(review_params)
+        format.html { redirect_to place_path(@review.place), notice: 'Review was successfully updated.' }
+        format.json { render :show, status: :ok, location: @review }
+      else
+        format.html { render :edit }
+        format.json { render json: @review.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
+    @review.destroy
+    redirect_to place_path(@review.place)
   end
 
   def like
@@ -40,5 +51,9 @@ class ReviewsController < ApplicationController
 
     def review_params
       params.require(:review).permit(:rate, :content, :place_id, :tag_list)
+    end
+    
+    def set_review
+      @review = Review.find(params[:id])
     end
 end

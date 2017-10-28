@@ -10,5 +10,6 @@ class CreateReviews < ActiveRecord::Migration
     end
 
     add_index :reviews, [:user_id, :place_id, :created_at]
+    add_index :reviews, [:user_id, :place_id], unique: true
   end
 end
