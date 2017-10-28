@@ -48,7 +48,7 @@
     <span style="float: right" ><%= link_to "Edit", edit_review_path(review.id) %> | <%= link_to "Delete", review_path(review.id), :method => :delete%></span>
     <% end %>
   </div>
-    <h2>コメントフォーム</h2>
+    <h2>Comment</h2>
 <%= form_for Comment.new do |f| %>
 <div class= "field">
 <%= f.label :content %><br>
@@ -59,7 +59,8 @@
 <div class="actions">
 <%= f.submit %>
 </div>
-<h2>コメント一覧</h2>
+<% end %>
+<h2>Comment List</h2>
 <%= render review.comments %>
 
 </div>
