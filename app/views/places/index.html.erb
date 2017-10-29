@@ -18,7 +18,7 @@
 				        <h4><b><%= f.name %></b></h4>
 				        <p><%= f.address %></p>
 				        <% if f.reviews.count != 0 %>
-				        <p><%= f.point/f.reviews.count %></p>
+				        <p><%= (f.point/f.reviews.count.round(1)).round(1) %></p>
 				        <% end %>
 				      </div>
 			    </div>

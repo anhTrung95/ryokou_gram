@@ -4,8 +4,6 @@ class ReviewsController < ApplicationController
     if user_signed_in?
       @review = current_user.reviews.build(review_params)
       if @review.save
-        np = @review.place.point + @review.rate
-        @review.place.update_point np
         flash[:success] = "Review created."
         redirect_to @review.place
       else
@@ -49,7 +47,7 @@ class ReviewsController < ApplicationController
     def review_params
       params.require(:review).permit(:rate, :content, :place_id, :tag_list)
     end
-    
+
     def set_review
       @review = Review.find(params[:id])
     end
