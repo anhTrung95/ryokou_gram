@@ -3,6 +3,9 @@ class PlacesController < ApplicationController
   before_action :admin, except: %i{index show}
   def index
     @places = Place.paginate page: params[:page]
+    @places.each do |p|
+      p.update_point
+    end
   end
 
   def new
@@ -20,6 +23,7 @@ class PlacesController < ApplicationController
   end
 
   def show
+    @place.update_point
     if user_signed_in?
       @review = Review.where(user_id: current_user.id, place_id: @place.id)
       if @review.exists?
