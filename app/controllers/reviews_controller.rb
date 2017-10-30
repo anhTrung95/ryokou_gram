@@ -33,13 +33,21 @@ class ReviewsController < ApplicationController
   def like
     @review = Review.find_by id: params[:id]
     @review.liked_by current_user
-    redirect_to :back
+    if request.xhr?
+      render json: { count: @review.get_upvotes.size, id: params[:id] }
+    else
+      redirect_to :back
+    end
   end
 
   def unlike
     @review = Review.find_by id: params[:id]
     @review.unliked_by current_user
-    redirect_to :back
+    if request.xhr?
+      render json: { count: @review.get_upvotes.size, id: params[:id] }
+    else
+      redirect_to :back
+    end
   end
 
   private

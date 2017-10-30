@@ -37,7 +37,11 @@
 				      </h2>
 				  <% end %>
 				  <br/>
-<h2>  User's reviews (<%= @place.reviews.count %>)</h2>
+<% if Review.where(user_id: current_user.id, place_id: @place.id).exists? %>
+    <% else %>
+     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Write your review</button>
+     <!-- Modal -->
+     <% end %>
 
 <% if Review.where(user_id: current_user.id, place_id: @place.id).exists? %>
       
@@ -59,11 +63,6 @@
                 </div>
             <% end %>
             </div>
-    <% if Review.where(user_id: current_user.id, place_id: @place.id).exists? %>
-    <% else %>
-     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Write your review</button>
-     <!-- Modal -->
-     <% end %>
     </div>
 
 </div>
