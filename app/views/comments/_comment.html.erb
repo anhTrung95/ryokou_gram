@@ -1,16 +1,28 @@
-
-<p>
-  <strong><%= comment.user.name %> :</strong>
+<div class="comment-card">
+<div class="row">
   
+  <div class="comment col-lg-2">
+     <div class="row">
+       <div class="col-lg-3">
+     <div class="avt-navbar">
+        <%= image_tag (comment.user.avatar.url) if comment.user.avatar %> 
+      </div>
+      </div>
+      <div class="comment col-lg-9">
+    <strong><%= link_to comment.user.name, comment.user %>:</strong>
+    </div>
+    </div>
+  </div>
+  <div class="comment col-lg-10">
   <%= comment.content %>
-</p>
- 
-<p>
+  </div>
+ </div>
+<div class="comment-actions">
   <% if(current_user.id == comment.user_id) %>
   <%= link_to 'Delete', comment,
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
   <%= link_to 'Edit', edit_comment_path(comment) %>
     <% end %>
-</p>
-
+</div>
+</div>
