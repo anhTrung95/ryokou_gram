@@ -49,18 +49,18 @@
      | <%= link_to "Delete", review_path(review.id), :method => :delete, data: { confirm: 'Are you sure?' }%></span>
     <% end %>
   </div>
+  <br/>
     <h2>Comment</h2>
 <%= form_for Comment.new do |f| %>
-<div class= "field">
-<%= f.label :content %><br>
+<div class= "review-form">
+
 <%= f.text_field :content %>
 <%= f.hidden_field :review_id, :value => review.id %>
 <%= f.hidden_field :user_id, :value => current_user.id %>
-</div>
-<div class="actions">
 <%= f.submit %>
 </div>
-<h2>Comment List</h2>
+
+<br/>
 <%= render review.comments %>
 
 </div>
