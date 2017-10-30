@@ -29,6 +29,11 @@
 <% if current_user.admin %>
 <%= link_to "Edit this place!", edit_place_url, class: "btn btn-info" %>
 <% end %>
+<% if Review.where(user_id: current_user.id, place_id: @place.id).exists? %>
+    <% else %>
+     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Write your review</button>
+     <!-- Modal -->
+     <% end %>
 <h1>  User's reviews (<%= @place.reviews.count %>)</h1>
 
 <% if Review.where(user_id: current_user.id, place_id: @place.id).exists? %>
@@ -50,11 +55,6 @@
                 </div>
             <% end %>
             </div>
-    <% if Review.where(user_id: current_user.id, place_id: @place.id).exists? %>
-    <% else %>
-     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Write your review</button>
-     <!-- Modal -->
-     <% end %>
     </div>
 
 </div>
