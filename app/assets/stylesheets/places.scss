@@ -12,7 +12,7 @@ h1 {
   width: auto;
   height: 150px;
   //min-height: 56.25%;
-  max-width: 250px;
+  max-width: 180px;
 }
 
 .card {
@@ -44,9 +44,9 @@ h1 {
 .modal-header {
   background-color: #5792f2;
   color: white;
-    -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
+    border: 2px solid #5792f2;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px        
 }
 
 .modal {

@@ -1,3 +1,4 @@
+<div class="container">
 <h1>All places</h1>
 
 <% if @places.count == 0 %>
@@ -20,6 +21,9 @@
 				        <% if f.reviews.count != 0 %>
 				         <div class="review-rating" data-score=<%= (f.point/f.reviews.count.round(1)).round(1) %> ></div>
 				          <p><%= (f.point/f.reviews.count.round(1)).round(1) %></p>
+				        <% else %>
+				           <div class="review-rating" data-score="0"></div>
+				          <p>0</p>
 				        <% end %>
 				      </div>
 			    </div>
@@ -30,6 +34,7 @@
 	</div>
 
 <% end %>
+</div>
 <script>
     $('.review-rating').raty({
       readOnly: true,
