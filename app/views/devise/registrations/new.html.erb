@@ -20,23 +20,23 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-  
+
   <div class="field">
     <%= f.label :name %> <br/>
     <%= f.text_field :name, :required => true %>
   </div>
-  
+
   <div class="field">
       <%= f.label :gender, "Gender"  %>
       <%= f.radio_button :gender, true %> <%= f.label :gender, "Male" %>
       <%= f.radio_button :gender, false %> <%= f.label :gender, "Female" %>
   </div>
-  
+
   <div class="field">
     <%= f.label :phone %>
     <%= f.text_field :phone, :required => true %>
   </div>
-  
+
   <div class="field">
     <%= f.label :avatar %><br />
     <%= f.file_field :avatar %>

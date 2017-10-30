@@ -1,3 +1,22 @@
 // Place all the styles related to the Admin controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.left-sidebar 
+{ 
+width: 200px; 
+float:left; 
+margin-right: 30px; 
+
+      top: 0!important;
+      bottom: 0!important;
+      
+      overflow: hidden;
+    position: fixed;
+    //height: 100%;
+    background: #d4d8d6;
+    margin-top: 60px;
+}
+html, body {
+    height: 100%;
+}
