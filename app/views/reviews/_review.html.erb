@@ -24,22 +24,22 @@
             Tags:   <span><%= render review.tags %></span>
           </div>
         </div>
-        <div>
-          <% if current_user %>
-            <% if current_user.voted_for? review %>
-              <%= link_to unlike_review_path(review), method: :put do %>
-                Unlike
-                <%= review.get_upvotes.size %>
-              <% end %>
-            <% else %>
-              <%= link_to like_review_path(review), method: :put do %>
-                Like
-                <%= review.get_upvotes.size %>
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
-
+    </div>
+    <div class="like-area">
+      <% if current_user %>
+        <% if current_user.voted_for? review %>
+          <%= link_to "Unlike", unlike_review_path(review), class: 'vote', method: :put, remote: true, data: { toggle_text: 'Like', toggle_href: like_review_path(review), id: review.id} %>
+        <% else %>
+          <%= link_to "Like", like_review_path(review), class: 'vote', method: :put, remote: true, data: { toggle_text: 'Unlike', toggle_href: unlike_review_path(review), id: review.id} %>
+        <% end %>
+      <% end %>
+      <span> 
+        | 
+        <span class="votes-count" data-id="<%= review.id %>">
+          <%= review.get_upvotes.size %>
+        </span>
+        users like this!
+      </span>
     </div>
   </div>
   <div class="fixed-bottom review-footer">
