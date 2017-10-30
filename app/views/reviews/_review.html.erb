@@ -61,7 +61,7 @@
 </div>
 
 <br/>
-<%= render review.comments %>
+<%= render review.comments.order(:created_at).reverse_order %>
 
 </div>
 <% end %>
