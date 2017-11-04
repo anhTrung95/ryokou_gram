@@ -1,0 +1,23 @@
+  <h3><%= @title %></h3>
+  <% if @users.any? %>
+      <div class="row">
+      <% @users.each do |f| %>
+
+      <div class="col-md-3">
+        <a href="/users/<%= f.id %>">
+          <div class="card">
+
+            <div class ="avt-rounded" ><%= image_tag (f.avatar.url) if f.avatar %></div>
+              <div class="user-container">
+                <h4><b><%= f.name %></b></h4>
+                <p><%= f.email %></p>
+              </div>
+
+          </div>
+         </a>
+         <br/>
+          </div>
+    <% end %>
+    </div>
+    <%= will_paginate %>
+  <% end %>

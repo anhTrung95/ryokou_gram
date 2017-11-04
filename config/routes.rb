@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
@@ -26,6 +30,7 @@ Rails.application.routes.draw do
     end
   end
   resources :tags, only: [:index, :show]
+  resources :relationships, only: [:create, :destroy]
 
   # Example resource route with options:
   #   resources :products do

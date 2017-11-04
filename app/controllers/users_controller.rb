@@ -9,6 +9,20 @@ class UsersController < ApplicationController
     @reviews = @user.reviews.paginate(page: params[:page])
   end
 
+  def following
+    @title = "Following"
+    @user  = User.find_by(id: params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Following"
+    @user  = User.find_by(id: params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
   private
   def find_user
     @user = User.find_by(id: params[:id])

@@ -32,6 +32,9 @@
                     </div>
 
                 </div>
+                <div>
+                    <%= render 'follow_form' if user_signed_in? %>
+                </div>
             </div>
         </div>
     </div>
@@ -41,12 +44,12 @@
     </div>
     <div>
       <h1>  User's reviews (<%= @user.reviews.count %>)</h1>
-        
+
             <% if @user.reviews.any? %>
                     <%= render @reviews %>
                 <%= will_paginate @reviews %>
             <% end %>
-       
+
     </div>
     <% end %>
 </div>
