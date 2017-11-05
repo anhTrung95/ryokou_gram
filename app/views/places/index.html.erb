@@ -8,8 +8,8 @@
 <% else %>
 
 	<div class="row">
-
-		<% @places.each do |f| %>
+		<% a=@places.sort_by{ |f| [f.point/((f.reviews.count.round(1)==0)? 1 : (f.reviews.count.round(1)).round(1))] }.reverse %>
+		<% a.each do |f| %>
 
 			<div class="col-md-3">
 			  <a class="place-link" href="/places/<%= f.id %>">

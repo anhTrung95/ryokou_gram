@@ -1,43 +1,148 @@
 <div class="container">
 <div class="profile-border">
-<div class="list-border">
+  <!--<div class="list-border">-->
 
-  <h1><%= @place.name %></h1>
-</p>
-</div>
-
+ <div class="place-name">
+ <h1><%= @place.name %></h1>
+ </div>
+<div class="place-address">
+<!--</div>-->
+<i class="fa fa-map-marker" aria-hidden="true"></i>
+  <%= @place.address %>
+  </div>
 <div class="row">
   <div class="col-lg-2"></div>
   <div class="col-lg-8">
- <div class="list-border">
+ <!--<div class="list-border">-->
 <p>
-  <strong>Image:</strong>
+  <!--<strong>Image:</strong>-->
   <br/>
   <div class="place-image">
   <%= image_tag @place.overview.thumb.url if @place.overview %>
   </div>
 </p>
-</div>
+<!--</div>-->
 </div>
 </div>
 
-<div class="list-border">
 
-  <strong>Address:</strong>
-  <%= @place.address %>
+  
 
-</div>
+
 <% if current_user.admin %>
 <%= link_to "Edit this place!", edit_place_url, class: "btn btn-info" %>
 <% end %>
+<div class="place-overview">
           <% if @place.reviews.count != 0 %>
-              <h2> Average rating:
-				         <div class="review-rating" data-score=<%= (@place.point/@place.reviews.count.round(1)).round(1) %> ></div>
-				          <%= (@place.point/@place.reviews.count.round(1)).round(1) %>
-				          <br/>
-				      </h2>
+               <h1>Overview</h1>
+               
+               <div class="row">
+                   <div class="col-lg-2">
+                 
+				          
+				         
+				       </div>
+                 <div class="col-lg-1 avg-rating">
+  				       <strong> <%= (@place.point/@place.reviews.count.round(1)).round(1) %></strong>
+  				          <br/>
+  				       </div> 
+                 <div class="col-lg-2">
+                 
+				           <div class="review-rating size-24" data-score=<%= (@place.point/@place.reviews.count.round(1)).round(1) %> ></div>
+				         
+				       </div>
+				      
+  				       
+  				       <div class="col-lg-5 reviews-count">
+  				        <%= @place.reviews.count %> reviews
+  				          <br/>
+  				       </div> 
+
+				       </div>
+				          <div class="row">
+				            <% s5=(((@place.reviews.select{ |hash| hash[:rate] == 5 }.count)/(@place.reviews.count.round(2)).round(2))*100).round(1) %>
+				            <div class="col-lg-2"></div>
+				            <div class="col-lg-1">
+				                <span class="row-label">Gorgeous:</span>
+				            </div>
+				            <div class="col-lg-6">
+				             
+				               <span class="bar">
+				                 <span class="fill" style="width:<%= s5 %>%;"></span>
+				               </span>
+				            </div>
+				            <div class="col-lg-1">
+				              <span class="row-label"><%= s5 %>%</span>
+				            </div>
+				          </div>
+				          <div class="row">
+				            <% s4=(((@place.reviews.select{ |hash| hash[:rate] == 4 }.count)/(@place.reviews.count.round(2)).round(2))*100).round(1) %>
+				            <div class="col-lg-2"></div>
+				            <div class="col-lg-1">
+				                <span class="row-label">Good:</span>
+				            </div>
+				            <div class="col-lg-6">
+				             
+				               <span class="bar">
+				                 <span class="fill" style="width:<%= s4 %>%;"></span>
+				               </span>
+				            </div>
+				            <div class="col-lg-1">
+				              <span class="row-label"><%= s4 %>%</span>
+				            </div>
+				          </div>
+				          <div class="row">
+				            <% s3=(((@place.reviews.select{ |hash| hash[:rate] == 3 }.count)/(@place.reviews.count.round(2)).round(2))*100).round(1) %>
+				            <div class="col-lg-2"></div>
+				            <div class="col-lg-1">
+				                <span class="row-label">Average:</span>
+				            </div>
+				            <div class="col-lg-6">
+				             
+				               <span class="bar">
+				                 <span class="fill" style="width:<%= s3 %>%;"></span>
+				               </span>
+				            </div>
+				            <div class="col-lg-1">
+				              <span class="row-label"><%= s3 %>%</span>
+				            </div>
+				          </div>
+				          <div class="row">
+				            <% s2=(((@place.reviews.select{ |hash| hash[:rate] == 2 }.count)/(@place.reviews.count.round(2)).round(2))*100).round(1) %>
+				            <div class="col-lg-2"></div>
+				            <div class="col-lg-1">
+				                <span class="row-label">Poor:</span>
+				            </div>
+				            <div class="col-lg-6">
+				             
+				               <span class="bar">
+				                 <span class="fill" style="width:<%= s2 %>%;"></span>
+				               </span>
+				            </div>
+				            <div class="col-lg-1">
+				              <span class="row-label"><%= s2 %>%</span>
+				            </div>
+				          </div>
+				          <div class="row">
+				            <% s1=(((@place.reviews.select{ |hash| hash[:rate] == 1 }.count)/(@place.reviews.count.round(2)).round(2))*100).round(1) %>
+				            <div class="col-lg-2"></div>
+				            <div class="col-lg-1">
+				                <span class="row-label">Abysmal:</span>
+				            </div>
+				            <div class="col-lg-6">
+				             
+				               <span class="bar">
+				                 <span class="fill" style="width:<%= s1 %>%;"></span>
+				               </span>
+				            </div>
+				            <div class="col-lg-1">
+				              <span class="row-label"><%= s1 %>%</span>
+				            </div>
+				          </div>
 				  <% end %>
 				  <br/>
+</div>
+    <h1>Reviews(<%= @place.reviews.count %>)</h1>
 <% if Review.where(user_id: current_user.id, place_id: @place.id).exists? %>
     <% else %>
      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Write your review</button>
@@ -46,13 +151,13 @@
 
 <% if Review.where(user_id: current_user.id, place_id: @place.id).exists? %>
       
-      <h1>Your review</h1>
+      <h2>Your review</h2>
       <div class="row">
         <div class = "col-md-12">
           <%= render @review %>
         </div>
       </div>
-      <h1>  Others' review </h1>
+      <h2>  Others' review </h2>
 
 <% end %>
   <div>

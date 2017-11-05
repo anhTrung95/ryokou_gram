@@ -11,6 +11,7 @@
   <div class="rating-form">
     <%= f.label :rate, " Rating:" %><%= f.hidden_field :rate %>
   </div>
+  <div id="hint"></div>
   <div class="field">
     <%= f.text_area :content, placeholder: "Write new review..." %>
   </div>
@@ -24,6 +25,7 @@
 
 
       path: '/assets/',
+      target : '#hint',
       scoreName: 'review[rate]'
 
     });
