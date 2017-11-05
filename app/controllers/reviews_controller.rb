@@ -49,6 +49,12 @@ class ReviewsController < ApplicationController
       redirect_to :back
     end
   end
+  
+  def review_partial
+    render :partial=>'review'
+    @review = Review.find_by id: params[:id]
+    @comments = @review.comments.paginate(page: params[:page], :per_page => 4)
+  end
 
   private
 

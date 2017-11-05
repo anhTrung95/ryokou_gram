@@ -163,12 +163,12 @@
   <div>
             <% if @place.reviews.any? %>
             <div class="row">
-              <div class = "col-md-12">
-                    <%= render @reviews %>
-                <%= will_paginate @reviews %>
-                </div>
+              <div class = "col-md-12" id="review-list">
+              	<%= render @reviews %>
+              </div>
             <% end %>
             </div>
+            <%= js_will_paginate @reviews %>
     </div>
 
 </div>
