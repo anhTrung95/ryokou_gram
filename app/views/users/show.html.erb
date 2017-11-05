@@ -32,8 +32,13 @@
                     </div>
 
                 </div>
-                <div>
-                    <%= render 'follow_form' if user_signed_in? %>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <%= render 'follow_form' if user_signed_in? && @user.admin != true %>
+                    </div>
+                    <div class="col-lg-6">
+                        <%= render 'shared/stats' if @user.admin != true %>
+                    </div>
                 </div>
             </div>
         </div>
