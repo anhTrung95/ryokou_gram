@@ -8,12 +8,15 @@
    <div class="centered">
   <% if user_signed_in? %>
     <h1>Welcome back, <%= current_user.name %>!</h1>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
   <% else %>
     <h1>Welcome to RyokouGram</h1>
     <a href="<%=new_user_registration_path %>" class="button reg_button">Register Now!</a>
   <% end %>
   </div>
-  
+
 </div>
 </html>
 
@@ -47,8 +50,8 @@
     cursor: pointer;
 }
 .reg_button{
-  background-color: #4CAF50; 
-  color: white; 
+  background-color: #4CAF50;
+  color: white;
   border: 2px solid #4CAF50
 }
 .reg_button:hover{
