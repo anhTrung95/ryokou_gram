@@ -1,9 +1,5 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    
-
-    <div class="container">
-
-     
+ <div class="container">
         <div class="row">
 
         <div class="col-lg-6">
@@ -13,7 +9,6 @@
             <div class="col-lg-1">
               <h3>ID</h3>
             </div>
-
             <div class="col-lg-4">
             <h3>Name</h3>
             </div>
@@ -21,6 +16,7 @@
               <h3>Email</h3>
             </div>
           </div>
+          
         <% @users.each do |f| %>
           <% if f.admin != true %>
           <div class="row">
@@ -44,7 +40,7 @@
           <% end %>
         <% end %>
 
-        <%= link_to "See all users", users_path %>
+        <button class="adm-index-button"><%= link_to "See all users", users_path %></button>
         </div>
       </div>
       <div class="col-lg-6">
@@ -62,6 +58,7 @@
               <h3>Thumbnail</h3>
             </div>
         </div>
+        
       <% @places.each do |f| %>
        <div class="row">
             <div class="col-lg-1">
@@ -78,8 +75,21 @@
         </div>
       <% end %>
 
-      <%= link_to "See all places", places_path %> <br/>
+      <button class="adm-index-button"><%= link_to "See all places", places_path %></button> <br/>
       </div>
       </div>
     
 </div>
+
+<style>
+  .adm-index-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
