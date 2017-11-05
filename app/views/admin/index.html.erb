@@ -1,10 +1,96 @@
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
- <div class="container">
-        <div class="row">
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body {font-family: "Lato", sans-serif;}
 
-        <div class="col-lg-6">
-          <div class="list-border">
-            <h1> Users list </h1> <br/>
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+  .adm-index-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+  .button-add-place {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+</style>
+</head>
+<body>
+
+
+ 
+  <!--<button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>-->
+
+
+  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+  <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+  <a href="#" class="w3-bar-item w3-button" style="width: 200px, height: 200px"><%= image_tag (current_user.avatar.url) if current_user.avatar %></a>
+  <a href="#" class="w3-bar-item w3-button"><b><center><%= current_user.name %></center></b></a>
+  <center><button class="button-add-place"><%= link_to "Add new place", new_place_path %></button></center>
+  </div>
+
+ 
+    
+
+
+<div id= main>
+
+<div class="tab">
+  <button id="openNav" class="w3-button w3-teal w3-large tablinks" onclick="w3_open()">&#9776;</button>
+  <button class="tablinks" onclick="openCity(event, 'UsersList')">Users List</button>
+  <button class="tablinks" onclick="openCity(event, 'PlacesList')">Places List</button>
+</div>
+
+<div id="UsersList" class="tabcontent">
+  <div class="col-lg-6">
+          
              <div class="row">
             <div class="col-lg-1">
               <h3>ID</h3>
@@ -16,7 +102,6 @@
               <h3>Email</h3>
             </div>
           </div>
-          
         <% @users.each do |f| %>
           <% if f.admin != true %>
           <div class="row">
@@ -39,13 +124,12 @@
           </div>
           <% end %>
         <% end %>
-
-        <button class="adm-index-button"><%= link_to "See all users", users_path %></button>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="list-border">
-      <h1> Places list </h1> <br/>
+  <button class="adm-index-button"><%= link_to "See all users", users_path %></button>
+</div>        
+</div>
+<div id="PlacesList" class="tabcontent">
+        <div class="col-lg-6">
+      
        <div class="row">
             <div class="col-lg-1">
               <h3>ID</h3>
@@ -76,20 +160,38 @@
       <% end %>
 
       <button class="adm-index-button"><%= link_to "See all places", places_path %></button> <br/>
-      </div>
-      </div>
     
+      </div> 
 </div>
 
-<style>
-  .adm-index-button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+<script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
 }
-</style>
+
+function w3_open() {
+  document.getElementById("main").style.marginLeft = "25%";
+  document.getElementById("mySidebar").style.width = "25%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("openNav").style.display = 'none';
+}
+function w3_close() {
+  document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+}
+
+</script>
+</div>
+</body>
+</html> 
