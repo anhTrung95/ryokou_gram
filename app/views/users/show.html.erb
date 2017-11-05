@@ -32,6 +32,14 @@
                     </div>
 
                 </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <%= render 'follow_form' if user_signed_in? && @user.admin != true %>
+                    </div>
+                    <div class="col-lg-6">
+                        <%= render 'shared/stats' if @user.admin != true %>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -41,12 +49,12 @@
     </div>
     <div>
       <h1>  User's reviews (<%= @user.reviews.count %>)</h1>
-        
+
             <% if @user.reviews.any? %>
                     <%= render @reviews %>
                 <%= will_paginate @reviews %>
             <% end %>
-       
+
     </div>
     <% end %>
 </div>

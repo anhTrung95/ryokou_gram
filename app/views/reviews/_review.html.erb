@@ -50,21 +50,17 @@
     <% end %>
   </div>
   <br/>
-    <h2>Comment</h2>
-<%= form_for Comment.new do |f| %>
-<div class= "review-form">
-
-<%= f.text_field :content %>
-<%= f.hidden_field :review_id, :value => review.id %>
-<%= f.hidden_field :user_id, :value => current_user.id %>
-<%= f.submit %>
+    <h2 id="comment-count">Comment (<%= review.comments.count %>)</h2>
+    <div id="comment-form-ajax">
+      <%= render 'comments/form', :@comment => Comment.new, :review => review %>
+    </div>
+  <div id="comment-list-ajax" >
+    <%= render review.comments.order(:created_at).reverse_order %>
+  </div>
 </div>
 
 <br/>
-<%= render review.comments.order(:created_at).reverse_order %>
 
-</div>
-<% end %>
 <script>
     $('.review-rating').raty({
       readOnly: true,

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027021752) do
+ActiveRecord::Schema.define(version: 20171104023336) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -30,9 +30,20 @@ ActiveRecord::Schema.define(version: 20171027021752) do
     t.integer  "point",      default: 0
   end
 
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
+
   create_table "reviews", force: :cascade do |t|
     t.text     "content"
-    t.integer  "rate"
+    t.integer  "rate",       null: false
     t.integer  "user_id"
     t.integer  "place_id"
     t.datetime "created_at", null: false
@@ -41,6 +52,7 @@ ActiveRecord::Schema.define(version: 20171027021752) do
 
   add_index "reviews", ["place_id"], name: "index_reviews_on_place_id"
   add_index "reviews", ["user_id", "place_id", "created_at"], name: "index_reviews_on_user_id_and_place_id_and_created_at"
+  add_index "reviews", ["user_id", "place_id"], name: "index_reviews_on_user_id_and_place_id", unique: true
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
 
   create_table "taggings", force: :cascade do |t|
