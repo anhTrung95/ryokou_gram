@@ -1,2 +1,2 @@
-$('#comment-list-ajax').html('<%= j render @review.comments.order(:created_at).reverse_order %>')
+$('#comment-card-<%=@comment.id%>').remove();
 $('#comment-count').html('Comment (<%= @review.comments.count %>)')
