@@ -105,3 +105,11 @@
   text-align: left;
   position: relative;
 }
+.size-100 img{
+  position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: auto;
+  height: 100px!important;
+  width: 100px!important;
+}
