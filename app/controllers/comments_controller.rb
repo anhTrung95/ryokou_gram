@@ -32,6 +32,7 @@ class CommentsController < ApplicationController
       if @comment.save
         #format.html { redirect_to  place_path(@comment.review.place), notice: 'Comment was successfully created.' }
         # format.json { render :show, status: :created, location: @comment }
+        @new_comment = @comment
         @review = @comment.review
         format.js
       else
