@@ -1,0 +1,2 @@
+$('#comment-list-ajax').html('<%= j render @review.comments.order(:created_at).reverse_order %>')
+$('#comment-count').html('Comment (<%= @review.comments.count %>)')
