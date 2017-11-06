@@ -28,10 +28,10 @@ class PlacesController < ApplicationController
       @review = Review.where(user_id: current_user.id, place_id: @place.id)
       if @review.exists?
         @review = @review.first
-        @reviews = Review.where(place_id: @place.id).where.not(user_id: current_user.id).paginate(page: params[:page])
+        @reviews = Review.where(place_id: @place.id).where.not(user_id: current_user.id).paginate(page: params[:page], :per_page => 5)
       else
         @review = current_user.reviews.build
-        @reviews = @place.reviews.paginate(page: params[:page])
+        @reviews = @place.reviews.paginate(page: params[:page], :per_page => 5)
       end
     end
   end

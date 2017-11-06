@@ -49,7 +49,7 @@ class ReviewsController < ApplicationController
       redirect_to :back
     end
   end
-
+  
   private
 
     def review_params
