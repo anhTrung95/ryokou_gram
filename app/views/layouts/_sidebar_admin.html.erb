@@ -1,0 +1,52 @@
+<head>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+ </head>
+  <button id="openNav" class="w3-button w3-teal w3-large tablinks" onclick="w3_open()">&#9776;</button>
+  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left admin-sidebar" style="display:none" id="mySidebar">
+  <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+  <a href="#" class="w3-bar-item w3-button">
+      <div class="avt-rounded">
+      <%= image_tag (current_user.avatar.url) if current_user.avatar %>
+      </div>
+      </a>
+  <a href="#" class="w3-bar-item w3-button"><b><center><%= current_user.name %></center></b></a>
+  <center><button class="button-add-place"><%= link_to "Add new place", new_place_path %></button></center>
+  </div>
+<style>
+  body {font-family: "Lato", sans-serif;}
+   .adm-index-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+  .button-add-place {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+ <script>
+     
+function w3_open() {
+  // document.getElementById("main").style.marginLeft = "15%";
+  document.getElementById("mySidebar").style.width = "15%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("openNav").style.display = 'none';
+}
+function w3_close() {
+  // document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+}
+
+ </script>

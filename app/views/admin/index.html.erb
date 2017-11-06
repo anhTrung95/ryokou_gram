@@ -69,9 +69,13 @@ div.tab button.active {
   <!--<button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>-->
 
 
-  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left admin-sidebar" style="display:none" id="mySidebar">
   <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
-  <a href="#" class="w3-bar-item w3-button" style="width: 200px, height: 200px"><%= image_tag (current_user.avatar.url) if current_user.avatar %></a>
+  <a href="#" class="w3-bar-item w3-button">
+    <div class="avt-rounded">
+    <%= image_tag (current_user.avatar.url) if current_user.avatar %>
+    </div>
+    </a>
   <a href="#" class="w3-bar-item w3-button"><b><center><%= current_user.name %></center></b></a>
   <center><button class="button-add-place"><%= link_to "Add new place", new_place_path %></button></center>
   </div>
@@ -83,7 +87,7 @@ div.tab button.active {
 <div id= main>
 
 <div class="tab">
-  <button id="openNav" class="w3-button w3-teal w3-large tablinks" onclick="w3_open()">&#9776;</button>
+  <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
   <button class="tablinks" onclick="openCity(event, 'UsersList')">Users List</button>
   <button class="tablinks" onclick="openCity(event, 'PlacesList')">Places List</button>
 </div>
@@ -180,8 +184,8 @@ function openCity(evt, cityName) {
 }
 
 function w3_open() {
-  document.getElementById("main").style.marginLeft = "25%";
-  document.getElementById("mySidebar").style.width = "25%";
+  document.getElementById("main").style.marginLeft = "15%";
+  document.getElementById("mySidebar").style.width = "15%";
   document.getElementById("mySidebar").style.display = "block";
   document.getElementById("openNav").style.display = 'none';
 }

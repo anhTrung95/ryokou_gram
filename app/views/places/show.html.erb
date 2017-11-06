@@ -95,7 +95,7 @@
 				            <% s3=(((@place.reviews.select{ |hash| hash[:rate] == 3 }.count)/(@place.reviews.count.round(2)).round(2))*100).round(1) %>
 				            <div class="col-lg-2"></div>
 				            <div class="col-lg-1">
-				                <span class="row-label">Average:</span>
+				                <span class="row-label">Regular:</span>
 				            </div>
 				            <div class="col-lg-6">
 				             
@@ -127,7 +127,7 @@
 				            <% s1=(((@place.reviews.select{ |hash| hash[:rate] == 1 }.count)/(@place.reviews.count.round(2)).round(2))*100).round(1) %>
 				            <div class="col-lg-2"></div>
 				            <div class="col-lg-1">
-				                <span class="row-label">Abysmal:</span>
+				                <span class="row-label">Bad:</span>
 				            </div>
 				            <div class="col-lg-6">
 				             
@@ -145,8 +145,11 @@
     <h1>Reviews(<%= @place.reviews.count %>)</h1>
 <% if Review.where(user_id: current_user.id, place_id: @place.id).exists? %>
     <% else %>
-     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Write your review</button>
+    <div>
+     <button type="button" class="write-btn" data-toggle="modal" data-target="#myModal">Write your review</button>
      <!-- Modal -->
+     <br/>
+     </div>
      <% end %>
 
 <% if Review.where(user_id: current_user.id, place_id: @place.id).exists? %>
