@@ -50,31 +50,32 @@
 	</div>
 </div>
 <div class="best-user">
-     <% if user_signed_in? %>
      <h2>User to follow</h2>
      	<div class="row">
         <% u=@users.sort_by{|t| [t.reviews.count]}.reverse.first(4) %>
 		<% u.each do |f| %>
       
-			<div class="col-md-3">
-			  <a href="/users/<%= f.id %>">
+            <div class="col-md-3">
 			    <div class="card">
-			    
+			    <a href="/users/<%= f.id %>">
 				    <div class ="avt-rounded" ><%= image_tag (f.avatar.url) if f.avatar %></div>
 				      <div class="user-container">
 				        <h4><b><%= f.name %></b></h4>
 				        <p><%= f.email %></p>
 				      </div>
-				      
+				      </a>
+				      <% if user_signed_in? && f.admin != true %>
+				      <%= render partial: 'users/follow_form', :locals => {:@user => f} %>
+				      <% end %>
 			    </div>
-			   </a>
+			   
 			   <br/>
+			  
       		</div>
-		<% end %>
-
+        <% end %>
 	</div>
 
-    <%end%>
+    
 </div>
 </div>
 </html>
