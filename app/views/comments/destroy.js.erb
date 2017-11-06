@@ -1,2 +1,2 @@
 $('#comment-card-<%=@comment.id%>').remove();
-$('#comment-count').html('Comment (<%= @review.comments.count %>)')
+$('#comment-count-<%= @review.id %>').html('Comment (<%= @review.comments.count %>)')

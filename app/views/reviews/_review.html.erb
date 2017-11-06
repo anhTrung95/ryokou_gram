@@ -50,11 +50,11 @@
     <% end %>
   </div>
   <br/>
-    <h2 id="comment-count">Comment (<%= review.comments.count %>)</h2>
-    <div id="comment-form-ajax">
+    <h2 id="comment-count-<%= review.id %>">Comment (<%= review.comments.count %>)</h2>
+    <div id="comment-form-ajax-<%= review.id %>">
       <%= render 'comments/form', :@comment => Comment.new, :review => review %>
     </div>
-  <div id="comment-list-ajax" >
+  <div id="comment-list-ajax-<%= review.id %>">
     <%= render review.comments.order(:created_at).reverse_order %>
   </div>
 </div>
