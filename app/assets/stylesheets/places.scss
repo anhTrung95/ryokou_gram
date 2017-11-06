@@ -118,3 +118,27 @@ h1 {
   display: table-cell;
   padding-bottom: 3px;
 }
+.write-btn{
+    margin: 0;
+    float: right;
+    border-color: #00a680 #267060 #267060 #00a680;
+    background-color: #00a680;
+    color: #fff;
+    
+    position: relative;
+    display: inline-block;
+    padding: 9px 16px 8px;
+    font-weight: bold;
+    font-family: inherit;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    background-clip: padding-box;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: pointer;
+}
