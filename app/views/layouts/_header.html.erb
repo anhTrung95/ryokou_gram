@@ -9,9 +9,9 @@
       <div class="search-bar">
           <input type="text" class="typeahead_input" tabindex="1" placeholder="Places or Username or Tags" autocorrect="off" spellcheck="false">
       </div>
-      <div class="search-btn">
-          <a>Search</a>
-      </div>
+      <button class="search-btn">Search</button>
+         
+      
       </div>
       </ul>
       <% if user_signed_in? %>
@@ -47,7 +47,7 @@
       <ul class="nav navbar-nav navbar-right">
          <li> <%= link_to 'Sign in', new_user_session_path  %> </li>
          <!--<li> <%= link_to 'Sign up', new_user_registration_path %> </li>-->
-      </ul
+      </ul>
       <% end %>
 
     </nav>
@@ -87,16 +87,29 @@
     
 }
 .search-btn{
-    margin-left: 80%;
+    /*margin-left: 80%;*/
     
     overflow: hidden;
         padding: 0;
     border-radius: inherit;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    background: #4CAF50;
+    /*background: #4CAF50;*/
      height: inherit;
      width: 20%;
+   
+    padding: 0px 0px;
+    box-sizing: border-box;
+    border: 1px solid #00a680;
+    /*border-radius: inherit;*/
+    background-color: #00a680;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    color: #ffffff;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
 }
 .typeahead_input{
     display: block;
