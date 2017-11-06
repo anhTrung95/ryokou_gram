@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
     @places.each do |p|
       p.update_point
     end
-    @users = User.all
+    @users = User.where(admin: false)
   end
-
+  
 end
