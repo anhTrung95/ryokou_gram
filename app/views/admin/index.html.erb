@@ -91,11 +91,10 @@ div.tab button.active {
   <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
   <button class="tablinks" onclick="openCity(event, 'UsersList')">Users List</button>
   <button class="tablinks" onclick="openCity(event, 'PlacesList')">Places List</button>
+  <button class="tablinks" onclick="openCity(event, 'ReviewsList')">Reviews List</button>
 </div>
 
 <div id="UsersList" class="tabcontent">
-  <div class="col-lg-6">
-          
              <div class="row">
             <div class="col-lg-1">
               <h3>ID</h3>
@@ -129,12 +128,9 @@ div.tab button.active {
           </div>
           <% end %>
         <% end %>
-  <button class="adm-index-button"><%= link_to "See all users", users_path %></button>
-</div>        
+  <%= link_to "See all users", users_path, class: "adm-index-button" %>
 </div>
 <div id="PlacesList" class="tabcontent">
-        <div class="col-lg-6">
-      
        <div class="row">
             <div class="col-lg-1">
               <h3>ID</h3>
@@ -153,7 +149,7 @@ div.tab button.active {
             <div class="col-lg-1">
               <%= f.id %>
             </div>
-                        <div class="col-lg-4">
+            <div class="col-lg-4">
             <%= link_to f.name, f %>
             </div>
         <div class="col-lg-7">
@@ -164,11 +160,55 @@ div.tab button.active {
         </div>
       <% end %>
 
-      <button class="adm-index-button"><%= link_to "See all places", places_path %></button> <br/>
-    
-      </div> 
+      <%= link_to "See all places", places_path, class: "adm-index-button" %> <br/>
 </div>
-
+<div id="ReviewsList" class="tabcontent">
+  <div class="row">
+    <div class="col-lg-1">
+      <h3>ID</h3>
+    </div>
+    <div class="col-lg-2">
+      <h3>User</h3>
+    </div>
+    <div class="col-lg-2">
+      <h3>Place</h3>
+    </div>
+    <div class="col-lg-4">
+      <h3>Content</h3>
+    </div>
+    <div class="col-lg-1">
+      <h3>Like's number</h3>
+    </div>
+    <div class="col-lg-1">
+      <h3>Comment's number</h3>
+    </div>
+  </div>
+        
+  <% @reviews.each do |f| %>
+    <div class="row">
+      <div class="col-lg-1">
+        <h3><%= f.id %></h3>
+      </div>
+      <div class="col-lg-2">
+        <h3><%= link_to f.user.name, f.user %></h3>
+      </div>
+      <div class="col-lg-2">
+        <h3><%= link_to f.place.name, f.place%></h3>
+      </div>
+      <div class="col-lg-4">
+       <h3><%= f.content %></h3>
+      </div>
+      <div class="col-lg-1">
+       <h3><%= f.get_upvotes.size %></h3>
+      </div>
+      <div class="col-lg-1">
+        <h3><%= f.comments.count %></h3>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to "See all reviews", reviews_path, class: "adm-index-button" %>
+</div>
+</div>
 <script>
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
