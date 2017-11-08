@@ -1,11 +1,11 @@
 
 <html>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="first-part">    
+<div class="first-part">
     <img src="/assets/back_frontpage.jpg" style='position:absolute;top:0px;left:0px;width:100%;height:400px;z-index:-1;'>
-     <div class="welcome"> 
+     <div class="welcome">
       <% if user_signed_in? %>
-    
+
     <h1>Welcome back, <%= current_user.name %>!</h1>
     <!--<section class="stats">-->
     <!--  <%= render 'shared/stats' %>-->
@@ -15,7 +15,7 @@
     <a href="<%=new_user_registration_path %>" class="button reg_button">Register Now!</a>
   <% end %>
   </div>
-  </div>    
+  </div>
 <div class="container">
 
 
@@ -54,7 +54,7 @@
      	<div class="row">
         <% u=@users.sort_by{|t| [t.reviews.count]}.reverse.first(4) %>
 		<% u.each do |f| %>
-      
+
             <div class="col-md-3">
 			    <div class="card">
 			    <a href="/users/<%= f.id %>">
@@ -68,15 +68,21 @@
 				      <%= render partial: 'users/follow_form', :locals => {:@user => f} %>
 				      <% end %>
 			    </div>
-			   
+
 			   <br/>
-			  
+
       		</div>
         <% end %>
 	</div>
 
-    
+
 </div>
+</div>
+<div>
+  <% if !@reviews.nil? %>
+    <%= render @reviews %>
+    <%= will_paginate @reviews %>
+  <% end %>
 </div>
 </html>
 
