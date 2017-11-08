@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
   def following? other_user
     following.include? other_user
   end
+
+  def feed
+    Review.order_desc.find_feed_item id
+  end
 end

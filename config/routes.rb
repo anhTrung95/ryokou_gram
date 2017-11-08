@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :comments
   get 'static_pages/home'
+  get 'static_pages/feed'
   root 'static_pages#home'
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
