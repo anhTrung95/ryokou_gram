@@ -2,11 +2,17 @@ class UsersController < ApplicationController
   before_action :find_user, only: :show
 
   def index
-    @users = User.all
+    @users = User.all.paginate(page: params[:page], :per_page => 20)
   end
 
   def show
-    @reviews = @user.reviews.paginate(page: params[:page])
+    if @user.admin
+      unless current_user.admin
+        redirect_to root_url
+      end
+    else
+      @reviews = @user.reviews.paginate(page: params[:page])
+    end
   end
 
   def following

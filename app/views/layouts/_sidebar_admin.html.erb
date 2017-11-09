@@ -10,7 +10,7 @@
       </div>
       </a>
   <a href="#" class="w3-bar-item w3-button"><b><center><%= current_user.name %></center></b></a>
-  <center><button class="button-add-place"><%= link_to "Add new place", new_place_path %></button></center>
+  <center><%= link_to "Add new place", new_place_path, class: "button-add-place" %></center>
   </div>
 <style>
   body {font-family: "Lato", sans-serif;}

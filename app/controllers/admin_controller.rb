@@ -5,6 +5,7 @@ class AdminController < ApplicationController
         
         @users = User.last(5)
         @places = Place.last(5)
+        @reviews = Review.last(5)
         @index_page = true
     end
     

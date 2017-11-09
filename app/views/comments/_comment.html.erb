@@ -21,12 +21,19 @@
    <i><%= time_ago_in_words(comment.created_at) %> ago</i>
  </div>
 <div class="comment-actions">
+  <% if user_signed_in? %>
   <% if(current_user.id == comment.user_id) %>
   <%= link_to 'Delete', comment,
                method: :delete,
                data: { confirm: 'Are you sure?' },
                remote: true %>
   <%= link_to 'Edit', edit_comment_path(comment), remote: true %>
-    <% end %>
+  <% end %>
+  <% end %>
 </div>
 </div>
+<style>
+  .comment-card {
+    margin-bottom: 5px;
+  }
+</style>

@@ -2,7 +2,7 @@ class PlacesController < ApplicationController
   before_action :find_place, only: %i{show destroy edit update}
   before_action :admin, except: %i{index show}
   def index
-    @places = Place.paginate page: params[:page]
+    @places = Place.all.paginate(page: params[:page], :per_page => 20)
     @places.each do |p|
       p.update_point
     end
@@ -33,6 +33,8 @@ class PlacesController < ApplicationController
         @review = current_user.reviews.build
         @reviews = @place.reviews.paginate(page: params[:page], :per_page => 5)
       end
+    else 
+      @reviews = @place.reviews.paginate(page: params[:page], :per_page => 5)
     end
   end
 

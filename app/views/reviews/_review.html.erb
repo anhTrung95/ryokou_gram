@@ -44,25 +44,32 @@
   </div>
   <div class="fixed-bottom review-footer">
     <span style="float: left">On <%= link_to review.place.name, review.place %> <%= time_ago_in_words(review.created_at) %> ago</span>
+    <% if user_signed_in? %>
     <% if current_user.id == review.user_id %>
     <span style="float: right"><a class="link" data-toggle="modal" data-target="#myModal">Edit your review</a>
      | <%= link_to "Delete", review_path(review.id), :method => :delete, data: { confirm: 'Are you sure?' }%></span>
+    <% end %>
     <% end %>
   </div>
   <br/>
   
  
     <h2 id="comment-count-<%= review.id %>">Comment (<%= review.comments.count %>)</h2>
+    <% if user_signed_in? %>
     <div id="comment-form-ajax-<%= review.id %>">
       <%= render 'comments/form', :@comment => Comment.new, :review => review %>
     </div>
+    
+    <% else %>
+    <h4>You need to sign in to comment</h4>
+    <% end %>
     <center><a id="show-comments-<%= review.id%>">Show all comments</a></center>
      <div id="review-comments-<%= review.id%>" style="display: none">
-  <div id="comment-list-ajax-<%= review.id %>">
-    <%= render review.comments.order(:created_at).reverse_order %>
-  </div>
+      <div id="comment-list-ajax-<%= review.id %>">
+        <%= render review.comments.order(:created_at).reverse_order %>
+      </div>
+    </div>
 </div>
-  </div>
 <br/>
 
 <script>

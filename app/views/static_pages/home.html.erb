@@ -1,11 +1,11 @@
 
 <html>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="first-part">    
+<div class="first-part">
     <img src="/assets/back_frontpage.jpg" style='position:absolute;top:0px;left:0px;width:100%;height:400px;z-index:-1;'>
-     <div class="welcome"> 
+     <div class="welcome">
       <% if user_signed_in? %>
-    
+
     <h1>Welcome back, <%= current_user.name %>!</h1>
     <!--<section class="stats">-->
     <!--  <%= render 'shared/stats' %>-->
@@ -15,7 +15,7 @@
     <a href="<%=new_user_registration_path %>" class="button reg_button">Register Now!</a>
   <% end %>
   </div>
-  </div>    
+  </div>
 <div class="container">
 
 
@@ -50,32 +50,39 @@
 	</div>
 </div>
 <div class="best-user">
-     <% if user_signed_in? %>
      <h2>User to follow</h2>
      	<div class="row">
         <% u=@users.sort_by{|t| [t.reviews.count]}.reverse.first(4) %>
 		<% u.each do |f| %>
-      
-			<div class="col-md-3">
-			  <a href="/users/<%= f.id %>">
+
+            <div class="col-md-3">
 			    <div class="card">
-			    
+			    <a href="/users/<%= f.id %>">
 				    <div class ="avt-rounded" ><%= image_tag (f.avatar.url) if f.avatar %></div>
 				      <div class="user-container">
 				        <h4><b><%= f.name %></b></h4>
 				        <p><%= f.email %></p>
 				      </div>
-				      
+				      </a>
+				      <% if user_signed_in? && f.admin != true %>
+				      <%= render partial: 'users/follow_form', :locals => {:@user => f} %>
+				      <% end %>
 			    </div>
-			   </a>
-			   <br/>
-      		</div>
-		<% end %>
 
+			   <br/>
+
+      		</div>
+        <% end %>
 	</div>
 
-    <%end%>
+
 </div>
+</div>
+<div>
+  <% if !@reviews.nil? %>
+    <%= render @reviews %>
+    <%= will_paginate @reviews %>
+  <% end %>
 </div>
 </html>
 

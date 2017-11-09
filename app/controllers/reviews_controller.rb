@@ -29,6 +29,10 @@ class ReviewsController < ApplicationController
     @review.destroy
     redirect_to place_path(@review.place)
   end
+  
+  def index
+    @reviews = Review.all.order(created_at: :desc)
+  end
 
   def like
     @review = Review.find_by id: params[:id]
