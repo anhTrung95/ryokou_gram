@@ -1,37 +1,41 @@
 <div class="comment-area" id="comment-card-<%= comment.id %>">
-<div class="row">
+  <div class="row">
   
-  <div class="comment col-lg-2">
-     <div class="row">
-       <div class="col-lg-3">
-     <div class="avt-navbar">
-        <%= image_tag (comment.user.avatar.url) if comment.user.avatar %> 
+    <div class="comment col-lg-2">
+       <div class="row">
+         <div class="col-lg-3">
+           <div class="avt-navbar">
+            <%= image_tag (comment.user.avatar.url) if comment.user.avatar %> 
+           </div>
+         </div>
+         
+        <div class="comment col-lg-9">
+      <strong><%= link_to comment.user.name, comment.user %>:</strong>
       </div>
       </div>
-      <div class="comment col-lg-9">
-    <strong><%= link_to comment.user.name, comment.user %>:</strong>
+        <div class="comment-time" style="float: left;font-size: 13px;">
+     <i><%= time_ago_in_words(comment.created_at) %> ago</i>
     </div>
     </div>
+    <div class="comment col-lg-10">
+    <%= comment.content %>
+    </div>
+   
+  
+    <div class="comment-actions">
+    <% if user_signed_in? %>
+    <% if(current_user.id == comment.user_id) %>
+    <%= link_to 'Delete', comment,
+                 method: :delete,
+                 data: { confirm: 'Are you sure?' },
+                 remote: true %>
+    <%= link_to 'Edit', edit_comment_path(comment), remote: true %>
+    <% end %>
+    <% end %>
+    </div>
   </div>
-  <div class="comment col-lg-10">
-  <%= comment.content %>
-  </div>
- </div>
- <div class="comment-time" style="float: left;">
-   <i><%= time_ago_in_words(comment.created_at) %> ago</i>
- </div>
-<div class="comment-actions">
-  <% if user_signed_in? %>
-  <% if(current_user.id == comment.user_id) %>
-  <%= link_to 'Delete', comment,
-               method: :delete,
-               data: { confirm: 'Are you sure?' },
-               remote: true %>
-  <%= link_to 'Edit', edit_comment_path(comment), remote: true %>
-  <% end %>
-  <% end %>
 </div>
-</div>
+
 <style>
   .comment-card {
     margin-bottom: 5px;
