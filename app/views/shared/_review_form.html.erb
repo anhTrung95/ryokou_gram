@@ -8,10 +8,12 @@
   <div class="field">
     <%= f.hidden_field :place_id, value: @place.id %>
   </div>
-  <div class="rating-form">
+  <div>
+  <div class="rating-form" style="float: left;" >
     <%= f.label :rate, " Rating:" %><%= f.hidden_field :rate %>
   </div>
-  <div id="hint"></div>
+  <div id="hint" style="float: right"></div>
+  </div>
   <div class="field">
     <%= f.text_area :content, placeholder: "Write new review..." %>
   </div>

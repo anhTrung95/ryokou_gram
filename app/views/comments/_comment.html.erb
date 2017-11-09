@@ -1,4 +1,4 @@
-<div id="comment-card-<%= comment.id %>">
+<div class="comment-area" id="comment-card-<%= comment.id %>">
 <div class="row">
   
   <div class="comment col-lg-2">
@@ -16,6 +16,9 @@
   <div class="comment col-lg-10">
   <%= comment.content %>
   </div>
+ </div>
+ <div class="comment-time" style="float: left;">
+   <i><%= time_ago_in_words(comment.created_at) %> ago</i>
  </div>
 <div class="comment-actions">
   <% if(current_user.id == comment.user_id) %>
