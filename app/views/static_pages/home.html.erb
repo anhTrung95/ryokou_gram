@@ -82,7 +82,11 @@
 </div>
 <div>
   <% if !@reviews.nil? %>
-    <%= render @reviews %>
+  <div class="row">
+    <% @reviews.each do |f| %>
+    <%= render partial: 'reviews/review_following', :locals => {:review => f} %>
+    <% end %>
+  </div>
     <%= will_paginate @reviews %>
   <% end %>
 </div>
