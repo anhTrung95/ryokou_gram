@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
         @reviews = current_user.feed.paginate page: params[:page], per_page: 4
       end
     end
-    @places = Place.paginate page: params[:page]
+    @places = Place.all
     @places.each do |p|
       p.update_point
     end
