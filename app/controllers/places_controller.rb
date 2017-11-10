@@ -33,7 +33,7 @@ class PlacesController < ApplicationController
         @review = current_user.reviews.build
         @reviews = @place.reviews.paginate(page: params[:page], :per_page => 5)
       end
-    else 
+    else
       @reviews = @place.reviews.paginate(page: params[:page], :per_page => 5)
     end
   end
@@ -75,6 +75,6 @@ class PlacesController < ApplicationController
   private
 
     def place_params
-      params.require(:place).permit(:name, :address, :overview, :point)
+      params.require(:place).permit(:name, :address, {images: []}, :point)
     end
 end

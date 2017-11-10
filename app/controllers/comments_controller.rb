@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
-    
+
     respond_to do |format|
       if @comment.save
         #format.html { redirect_to  place_path(@comment.review.place), notice: 'Comment was successfully created.' }
@@ -64,7 +64,26 @@ class CommentsController < ApplicationController
   def destroy
     @review = @comment.review
     @comment.destroy
+  end
 
+  def like
+    @comment = Comment.find_by id: params[:id]
+    @comment.liked_by current_user
+    if request.xhr?
+      render json: { count: @comment.get_upvotes.size, id: params[:id] }
+    else
+      redirect_to :back
+    end
+  end
+
+  def unlike
+    @comment = Comment.find_by id: params[:id]
+    @comment.unliked_by current_user
+    if request.xhr?
+      render json: { count: @comment.get_upvotes.size, id: params[:id] }
+    else
+      redirect_to :back
+    end
   end
 
   private
