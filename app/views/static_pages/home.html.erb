@@ -30,7 +30,7 @@
 			<div class="col-md-3">
 			  <a class="place-link" href="/places/<%= f.id %>">
 			    <div class="card">
-				    <div class ="image-size" ><%= image_tag f.overview.thumb.url if f.overview %></div>
+				    <div class ="image-size" ><%= image_tag f.images.first if f.images %></div>
 				      <div class="place-container">
 				        <h4><b><%= f.name %></b></h4>
 				        <p><%= f.address %></p>
@@ -52,21 +52,24 @@
 <div class="best-user">
      <h2>User to follow</h2>
      	<div class="row">
-        <% u=@users.sort_by{|t| [t.reviews.count]}.reverse.first(4) %>
+        <% u=@users.reject{|u| u == current_user}.sort_by{|t| [t.reviews.count]}.reverse.first(4) %>
 		<% u.each do |f| %>
 
             <div class="col-md-3">
 			    <div class="card">
 			    <a href="/users/<%= f.id %>">
 				    <div class ="avt-rounded" ><%= image_tag (f.avatar.url) if f.avatar %></div>
-				      <div class="user-container">
-				        <h4><b><%= f.name %></b></h4>
-				        <p><%= f.email %></p>
-				      </div>
-				      </a>
+				    <div class="user-container">
+				        <h3><b><%= f.name %></b></h3>
+				        
+				    </div>
+				</a>
+				       <%= render partial: 'shared/user_stats', :locals => {:@user => f} %>
+				    <div>
 				      <% if user_signed_in? && f.admin != true %>
 				      <%= render partial: 'users/follow_form', :locals => {:@user => f} %>
 				      <% end %>
+				    </div>
 			    </div>
 
 			   <br/>
@@ -77,13 +80,18 @@
 
 
 </div>
-</div>
 <div>
   <% if !@reviews.nil? %>
-    <%= render @reviews %>
+  <div class="row">
+    <% @reviews.each do |f| %>
+    <%= render partial: 'reviews/review_following', :locals => {:review => f} %>
+    <% end %>
+  </div>
     <%= will_paginate @reviews %>
   <% end %>
 </div>
+</div>
+
 </html>
 
 <!--them ti style-->

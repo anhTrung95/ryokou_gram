@@ -1,3 +1,4 @@
+<div class="container">
 <div class="card" style="background-color: #f5f5f5" id="review-list-<%= review.id %>">
   <div class="media">
     <div class="media-left media-top">
@@ -69,6 +70,8 @@
         <%= render review.comments.order(:created_at).reverse_order %>
       </div>
     </div>
+</div>
+<br/>
 </div>
 <script>
 $(document).ready(function(){

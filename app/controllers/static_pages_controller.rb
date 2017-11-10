@@ -4,10 +4,10 @@ class StaticPagesController < ApplicationController
       if current_user.admin
         redirect_to admin_path
       else
-        @reviews = current_user.feed.paginate page: params[:page], per_page: 4
+        @reviews = current_user.follow_feed.paginate page: params[:page], per_page: 4
       end
     end
-    @places = Place.paginate page: params[:page]
+    @places = Place.all
     @places.each do |p|
       p.update_point
     end
