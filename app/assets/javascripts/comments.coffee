@@ -1,7 +1,8 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-# the `data` parameter is the decoded JSON object
+$(document).on 'ajax:success', 'a.vote-comment', (status,data,xhr)-> 
+  # the `data` parameter is the decoded JSON object
   # update counter
   $(".votes-count-comment[data-id=#{data.id}]").text data.count
 
