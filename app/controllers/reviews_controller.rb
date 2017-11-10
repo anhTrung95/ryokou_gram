@@ -1,5 +1,9 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:edit, :destroy, :update]
+  
+  def index
+     @reviews = Review.order(created_at: :desc).paginate(page: params[:page], :per_page => 20)
+  end
   def create
     if user_signed_in?
       @review = current_user.reviews.build(review_params)
@@ -28,10 +32,6 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     redirect_to place_path(@review.place)
-  end
-  
-  def index
-    @reviews = Review.all.order(created_at: :desc)
   end
 
   def like

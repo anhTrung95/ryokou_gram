@@ -28,9 +28,9 @@ Rails.application.routes.draw do
     member do
       put "like", to: "reviews#like"
       put "unlike", to: "reviews#unlike"
-      put "index", to: "reviews#index"
     end
   end
+  resources :reviews
   resources :tags, only: [:index, :show]
   resources :relationships, only: [:create, :destroy]
 
