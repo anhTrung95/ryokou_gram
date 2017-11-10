@@ -16,7 +16,7 @@ class StaticPagesController < ApplicationController
 
   def feed
     if user_signed_in?
-      @reviews = current_user.feed.paginate page: params[:page], per_page: 4
+      @reviews = current_user.follow_feed.paginate page: params[:page], per_page: 4
     else
       redirect_to root_url
     end
