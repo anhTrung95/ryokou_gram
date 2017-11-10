@@ -1,3 +1,26 @@
+<div class="col-lg-6" data-toggle="modal" data-target="#reviewModal<%= review.id %>">
+    <div class="card" style="background-color: #f5f5f5">
+      <div class="row">
+        <div class="col-lg-1">
+          <div class="avt-navbar">
+           <%= image_tag (review.user.avatar.url) if review.user.avatar %>
+          </div>
+        </div>
+        <div style="margin-left:50px">
+           <h4 style="text-align: left;margin-top:5px;font-size: 16px;"><%= link_to review.user.name, review.user %> has rated 
+           <%= link_to review.place.name, review.place %>: </h4>
+        </div>
+      </div>
+      <div class="review-rating" data-score=<%=review.rate %> ></div>
+      <div style="margin: 20px 60px 30px;">
+        <div style="float:left"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span class="votes-count" data-id="<%= review.id %>"><%= review.get_upvotes.size %></span></div>
+        <div style="float:right"><i class="fa fa-commenting-o" aria-hidden="true"></i> <span id="si-comments-<%= review.id %>"><%= review.comments.count %></span></div>
+      </div>
+    </div>
+</div>
+<div id="reviewModal<%= review.id %>" class="modal fade" role="dialog">
+ 
+  <div class="container">
 <div class="card" style="background-color: #f5f5f5" id="review-list-<%= review.id %>">
   <div class="media">
     <div class="media-left media-top">
@@ -71,7 +94,8 @@
     </div>
 </div>
 <br/>
-
+</div>
+</div>
 <script>
 $(document).ready(function(){
     
