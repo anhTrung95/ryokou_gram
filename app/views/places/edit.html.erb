@@ -24,7 +24,9 @@
   </div>
 
   <div class="place-image">
-  <%= image_tag @place.overview.thumb.url if @place.overview %>
+  <% @place.images.each do |a| %>
+    <%= image_tag a.thumb %>
+  <% end %>
   </div>
 
   <div class="field">
