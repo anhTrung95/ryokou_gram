@@ -30,7 +30,7 @@
 			<div class="col-md-3">
 			  <a class="place-link" href="/places/<%= f.id %>">
 			    <div class="card">
-				    <div class ="image-size" ><%= image_tag f.images.first if f.images %></div>
+				    <div class ="image-size" ><%= image_tag f.place_photos.first.photo %></div>
 				      <div class="place-container">
 				        <h4><b><%= f.name %></b></h4>
 				        <p><%= f.address %></p>
@@ -61,7 +61,7 @@
 				    <div class ="avt-rounded" ><%= image_tag (f.avatar.url) if f.avatar %></div>
 				    <div class="user-container">
 				        <h3><b><%= f.name %></b></h3>
-				        
+
 				    </div>
 				</a>
 				       <%= render partial: 'shared/user_stats', :locals => {:@user => f} %>

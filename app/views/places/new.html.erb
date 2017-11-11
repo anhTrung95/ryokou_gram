@@ -22,10 +22,12 @@
     <%= f.label :address %><br>
     <%= f.text_field :address , :required => true%>
   </div>
-  <div class="field">
-    <%= f.label :images %><br>
-    <%= f.file_field :images, multiple: true, :required => true %>
-  </div>
+  <%= f.fields_for :place_photos do |p| %>
+     <div class="field">
+       <%= p.label :photo %><br>
+       <%= p.file_field :photo, :multiple => true, name: "place_photos[photo][]" %>
+     </div>
+  <% end %>
   <br/>
   <div class="actions">
     <%= f.submit "Create new place", :class =>"btn btn-primary"%>

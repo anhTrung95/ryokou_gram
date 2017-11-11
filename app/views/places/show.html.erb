@@ -18,9 +18,9 @@
   <!--<strong>Image:</strong>-->
   <br/>
   <div class="place-image">
-  <% @place.images.each do |a| %>
-    <%= image_tag a %>
-  <% end %>
+    <% @place_photos.each do |p| %>
+      <%= image_tag p.photo_url %>
+    <% end %>
   </div>
 </p>
 <!--</div>-->
