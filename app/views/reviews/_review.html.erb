@@ -19,14 +19,14 @@
           </div>
         </div>
         <div class="media-left" style="width: 100%">
-          <span class="content-box">
+          <div class="content-box">
             <% if review.content.length > 250 %>
               <%= truncate(review.content, length: 250) %>
               <%= link_to '...Read more', '', class: "read-more-review-#{review.id}" %>
             <% else %>
               <%= review.content %>
             <% end %>
-          </span>
+          </div>
           <div class="content-box" style="text-align: left; bottom: 0px">
             Tags:   <span><%= render review.tags %></span>
           </div>
