@@ -14,7 +14,7 @@
 			<div class="col-md-3">
 			  <a class="place-link" href="/places/<%= f.id %>">
 			    <div class="card">
-				    <div class ="image-size" ><%= image_tag f.images[0].thumb.url if f.images %></div>
+				    <div class ="image-size" ><%= image_tag f.place_photos.first.photo.thumb.url if f.place_photos.exists? %></div>
 				      <div class="place-container">
 				        <h4><b><%= f.name %></b></h4>
 				        <p><%= f.address %></p>

@@ -1,8 +1,7 @@
 class Place < ActiveRecord::Base
-  mount_uploaders :images, PlaceImageUploader
-  serialize :images, JSON
   has_many :reviews, dependent: :destroy
-
+  has_many :place_photos, dependent: :destroy
+  accepts_nested_attributes_for :place_photos
   def update_point
     value = 0
     if self.reviews.exists?
@@ -11,5 +10,9 @@ class Place < ActiveRecord::Base
       end
     end
     update_attribute :point, value
+  end
+
+  def exist_photo
+    PlacePhoto.existed_photo id
   end
 end

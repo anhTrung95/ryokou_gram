@@ -10,11 +10,15 @@ class PlacesController < ApplicationController
 
   def new
     @place = Place.new
+    @place_photo = @place.place_photos.build
   end
 
   def create
     @place = Place.new(place_params)
     if @place.save
+      params[:place_photos]['photo'].each do |p|
+          @place_photo = @place.place_photos.create!(:photo => p)
+      end
       flash[:success] = "Place created."
       redirect_to @place
     else
@@ -24,6 +28,7 @@ class PlacesController < ApplicationController
 
   def show
     @place.update_point
+    @place_photos = @place.place_photos.all
     if user_signed_in?
       @review = Review.where(user_id: current_user.id, place_id: @place.id)
       if @review.exists?
@@ -39,10 +44,15 @@ class PlacesController < ApplicationController
   end
 
   def edit
+    @place_existed_photos = @place.exist_photo
+    @place_photo = @place.place_photos.build
   end
 
   def update
     if @place.update_attributes(place_params)
+      params[:place_photos]['photo'].each do |p|
+          @place_photo = @place.place_photos.create!(:photo => p)
+      end
       flash[:success] = "Edit place completed."
       redirect_to @place
     else
@@ -75,6 +85,6 @@ class PlacesController < ApplicationController
   private
 
     def place_params
-      params.require(:place).permit(:name, :address, {images: []}, :point)
+      params.require(:place).permit(:name, :address, :point, place_photos_attributes: [:id, :place_id, :photo])
     end
 end

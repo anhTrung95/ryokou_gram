@@ -24,15 +24,18 @@
   </div>
 
   <div class="place-image">
-  <% @place.images.each do |a| %>
-    <%= image_tag a.thumb %>
+    <% @place_existed_photos.each do |p| %>
+      <%= image_tag p.photo_url %>
+      <%= link_to "Edit Photo", edit_place_photo_path(p) %>
+      <%= link_to "Destroy", place_photo_path(p), method: :delete%>
+    <% end %>
+  </div>
+  <%= f.fields_for :place_photo do |p| %>
+    <div class="field">
+      <%= p.label :add_photo %><br>
+      <%= p.file_field :photo, :multiple => true, name: "place_photos[photo][]" %>
+    </div>
   <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :image %><br>
-    <%= f.file_field :images, multiple: true %>
-  </div>
   <br/>
   <div class="actions">
     <%= f.submit "Edit place", :class =>"btn btn-primary"%>

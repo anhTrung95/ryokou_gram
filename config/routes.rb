@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :places
+  resources :place_photos
   resources :reviews do
     member do
       put "like", to: "reviews#like"

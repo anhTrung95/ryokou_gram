@@ -154,7 +154,9 @@ div.tab button.active {
             </div>
         <div class="col-lg-7">
               <div class="thumbnail">
-                <%= image_tag f.images[0].thumb.url if f.images %>
+                <% f.place_photos.each do |p| %>
+                  <%= image_tag p.photo.thumb.url %>
+                <% end %>
               </div>
             </div>
         </div>
