@@ -29,4 +29,8 @@ class User < ActiveRecord::Base
   def feed
     Review.order_desc.find_feed_item id
   end
+
+  def follow_feed
+    Review.order_desc.find_follow_item id
+  end
 end

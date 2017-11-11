@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:edit, :destroy, :update]
-  
+
   def index
      @reviews = Review.order(created_at: :desc).paginate(page: params[:page], :per_page => 20)
   end
@@ -53,7 +53,7 @@ class ReviewsController < ApplicationController
       redirect_to :back
     end
   end
-  
+
   private
 
     def review_params

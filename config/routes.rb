@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :comments
   get 'static_pages/home'
   get 'static_pages/feed'
   root 'static_pages#home'
@@ -30,7 +29,12 @@ Rails.application.routes.draw do
       put "unlike", to: "reviews#unlike"
     end
   end
-  resources :reviews
+  resources :comments do
+    member do
+      put "like", to: "comments#like"
+      put "unlike", to: "comments#unlike"
+    end
+  end
   resources :tags, only: [:index, :show]
   resources :relationships, only: [:create, :destroy]
 
