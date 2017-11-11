@@ -1,10 +1,35 @@
+<div class="border-form-div" style="max-width:40%">
+  <h2>Edit image</h2>
+<div class="place-image">
+  <h3><b>Previous image</b></h3>
 <%= image_tag @place_photo.photo %>
 <%= form_for(@place_photo) do |f| %>
   <div class="field">
-    <%= f.label :photo %><br>
-    <%= f.file_field :photo %>
+    <h3><%= f.label :photo,'New image' %></h3>
+    <img id="blah" src="#"  style="margin-bottom:15px"/>
+    <%= f.file_field :photo, :id =>"imgInp"%>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
+</div>
+</div>
+<script>
+  function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#blah').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#imgInp").change(function() {
+  readURL(this);
+});
+</script>
