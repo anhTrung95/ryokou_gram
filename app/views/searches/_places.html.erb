@@ -1,0 +1,30 @@
+<div class="best-place">
+  <div class="row">
+    <% a = @result[:places].sort_by{|f| [f.point / ((f.reviews.count.round(1) == 0) ? 1 :
+      (f.reviews.count.round(1)).round(1))]}.reverse.first(4) %>
+    <% a.each do |f| %>
+      <div class="col-md-3">
+        <a class="place-link" href="/places/<%= f.id %>">
+          <div class="card">
+            <div class ="image-size" >
+              <%= image_tag f.place_photos.first.photo if f.place_photos.exists? %>
+            </div>
+            <div class="place-container">
+              <h4><b><%= f.name %></b></h4>
+              <p><%= f.address %></p>
+              <% if f.reviews.count != 0 %>
+                <div class="review-rating"
+                  data-score="<%= (f.point/f.reviews.count.round(1)).round(1) %>">
+                </div>
+                <p><%= (f.point/f.reviews.count.round(1)).round(1) %></p>
+              <% else %>
+                <div class="review-rating" data-score="0"></div>
+                <p>0</p>
+              <% end %>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% end %>
+  </div>
+</div>
