@@ -50,8 +50,10 @@ class PlacesController < ApplicationController
 
   def update
     if @place.update_attributes(place_params)
-      params[:place_photos]['photo'].each do |p|
+      if params[:place_photos]
+        params[:place_photos]['photo'].each do |p|
           @place_photo = @place.place_photos.create!(:photo => p)
+        end
       end
       flash[:success] = "Edit place completed."
       redirect_to @place
