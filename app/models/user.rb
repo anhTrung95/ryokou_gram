@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  scope :load_user_with_name, ->(user_name){where "name LIKE ?",
+    "%#{user_name}%"}
+
   acts_as_voter
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

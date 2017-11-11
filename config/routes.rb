@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   end
   resources :tags, only: [:index, :show]
   resources :relationships, only: [:create, :destroy]
+  resources :searches
 
   # Example resource route with options:
   #   resources :products do

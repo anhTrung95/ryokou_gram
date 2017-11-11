@@ -1,0 +1,50 @@
+<div class="search">
+  <div class="container">
+    <div class="searches-tab">
+      <h2>The results</h2>
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#place">Places</a></li>
+        <li><a data-toggle="tab" href="#review">Reviews</a></li>
+        <li><a data-toggle="tab" href="#user">Users</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="place" class="tab-pane fade in active">
+          <% if !@result[:places].present? || @result[:places].empty? %>
+            <h2>No result</h2>
+          <% else %>
+            <p>Have <%= @result[:places].size %> places</p>
+            <hr>
+            <%= render "places" %>
+          <% end %>
+        </div>
+
+        <div id="review" class="tab-pane fade">
+          <% if !@result[:reviews].present? || @result[:reviews].empty? %>
+            <h2>No result</h2>
+          <% else %>
+            <p>Have <%= @result[:reviews].size %> reviews</p>
+            <hr>
+            <% @result[:reviews].each do |review| %>
+              <%= render "review", review: review %>
+              <hr>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div id="user" class="tab-pane fade">
+          <% if !@result[:users].present? || @result[:users].empty? %>
+            <h2>No result</h2>
+          <% else %>
+            <p>Have <%= @result[:users].size %> users</p>
+            <hr>
+            <% @result[:users].each do |user| %>
+              <%= render "user", user: user %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>

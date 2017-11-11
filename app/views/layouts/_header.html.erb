@@ -7,11 +7,15 @@
       <ul class="nav navbar-nav navbar-center">
        <div class="row search-component">
       <div class="search-bar">
-          <input type="text" class="typeahead_input" tabindex="1" placeholder="Places or Username or Tags" autocorrect="off" spellcheck="false">
+        <%= form_tag searches_path, method: :get do %>
+          <%= text_field_tag :search, params[:search], autocorrect: false,
+            class: "typeahead_input",
+            placeholder: "Places or Username or Tags", spellcheck: false %>
+        <% end %>
       </div>
       <button class="search-btn">Search</button>
-         
-      
+
+
       </div>
       </ul>
       <% if user_signed_in? %>
@@ -64,10 +68,10 @@
         margin-top: 20px;
 }
 .search-bar{
-   
+
  color:black;
  float: left;
-    
+
     margin: 0;
     padding: 1em;
      border-radius: inherit;
@@ -81,11 +85,11 @@
     box-sizing: border-box;
     height: inherit;
     width: 80%;
-    
+
 }
 .search-btn{
     /*margin-left: 80%;*/
-    
+
     overflow: hidden;
         padding: 0;
     border-radius: inherit;
@@ -94,7 +98,7 @@
     /*background: #4CAF50;*/
      height: inherit;
      width: 20%;
-   
+
     padding: 0px 0px;
     box-sizing: border-box;
     border: 1px solid #00a680;
