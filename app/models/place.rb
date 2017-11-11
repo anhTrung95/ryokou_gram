@@ -1,5 +1,6 @@
 class Place < ActiveRecord::Base
-  mount_uploader :overview, PlaceImageUploader
+  mount_uploaders :images, PlaceImageUploader
+  serialize :images, JSON
   has_many :reviews, dependent: :destroy
 
   def update_point

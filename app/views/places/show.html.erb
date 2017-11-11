@@ -18,16 +18,14 @@
   <!--<strong>Image:</strong>-->
   <br/>
   <div class="place-image">
-  <%= image_tag @place.overview.thumb.url if @place.overview %>
+  <% @place.images.each do |a| %>
+    <%= image_tag a %>
+  <% end %>
   </div>
 </p>
 <!--</div>-->
 </div>
 </div>
-
-
-  
-
 <% if user_signed_in? %>
 <% if current_user.admin %>
 <%= link_to "Edit this place!", edit_place_url, class: "btn btn-info" %>
@@ -36,29 +34,22 @@
 <div class="place-overview">
           <% if @place.reviews.count != 0 %>
                <h1>Overview</h1>
-               
+
                <div class="row">
                    <div class="col-lg-2">
-                 
-				          
-				         
 				       </div>
                  <div class="col-lg-1 avg-rating">
   				       <strong> <%= (@place.point/@place.reviews.count.round(1)).round(1) %></strong>
   				          <br/>
-  				       </div> 
+  				       </div>
                  <div class="col-lg-2">
-                 
+
 				           <div class="review-rating size-24" data-score=<%= (@place.point/@place.reviews.count.round(1)).round(1) %> ></div>
-				         
 				       </div>
-				      
-  				       
   				       <div class="col-lg-5 reviews-count">
   				        <%= @place.reviews.count %> reviews
   				          <br/>
-  				       </div> 
-
+  				       </div>
 				       </div>
 				          <div class="row">
 				            <% s5=(((@place.reviews.select{ |hash| hash[:rate] == 5 }.count)/(@place.reviews.count.round(2)).round(2))*100).round(1) %>
@@ -67,7 +58,7 @@
 				                <span class="row-label">Gorgeous:</span>
 				            </div>
 				            <div class="col-lg-6">
-				             
+
 				               <span class="bar">
 				                 <span class="fill" style="width:<%= s5 %>%;"></span>
 				               </span>
@@ -83,7 +74,7 @@
 				                <span class="row-label">Good:</span>
 				            </div>
 				            <div class="col-lg-6">
-				             
+
 				               <span class="bar">
 				                 <span class="fill" style="width:<%= s4 %>%;"></span>
 				               </span>
@@ -99,7 +90,7 @@
 				                <span class="row-label">Regular:</span>
 				            </div>
 				            <div class="col-lg-6">
-				             
+
 				               <span class="bar">
 				                 <span class="fill" style="width:<%= s3 %>%;"></span>
 				               </span>
@@ -115,7 +106,7 @@
 				                <span class="row-label">Poor:</span>
 				            </div>
 				            <div class="col-lg-6">
-				             
+
 				               <span class="bar">
 				                 <span class="fill" style="width:<%= s2 %>%;"></span>
 				               </span>
@@ -131,7 +122,7 @@
 				                <span class="row-label">Bad:</span>
 				            </div>
 				            <div class="col-lg-6">
-				             
+
 				               <span class="bar">
 				                 <span class="fill" style="width:<%= s1 %>%;"></span>
 				               </span>
@@ -152,9 +143,9 @@
      		<br/>
      	</div>
      	<% end %>
-     
+
 		<% if Review.where(user_id: current_user.id, place_id: @place.id).exists? %>
-      
+
       	<h2>Your review</h2>
       	<div class="row">
         	<div class = "col-md-12">
