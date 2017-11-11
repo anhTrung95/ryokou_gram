@@ -7,8 +7,10 @@ class UsersController < ApplicationController
 
   def show
     if @user.admin
-      unless current_user.admin
-        redirect_to root_url
+      if user_signed_in?
+        unless current_user.admin
+          redirect_to root_url
+        end
       end
     else
       @reviews = @user.reviews.paginate(page: params[:page])
