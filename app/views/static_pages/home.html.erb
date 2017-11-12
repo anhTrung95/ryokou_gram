@@ -34,6 +34,7 @@
 				      <div class="place-container">
 				        <h4><b><%= f.name %></b></h4>
 				        <p><%= f.address %></p>
+				          <%= f.reviews.count %> reviews
 				        <% if f.reviews.count != 0 %>
 				         <div class="review-rating" data-score=<%= (f.point/f.reviews.count.round(1)).round(1) %> ></div>
 				          <p><%= (f.point/f.reviews.count.round(1)).round(1) %></p>

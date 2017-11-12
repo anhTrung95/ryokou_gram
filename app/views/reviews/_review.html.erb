@@ -70,12 +70,14 @@
     <% else %>
     <h4>You need to sign in to comment</h4>
     <% end %>
+   
     <center><a id="show-comments-<%= review.id%>">Show all comments</a></center>
      <div id="review-comments-<%= review.id%>" style="display: none">
       <div id="comment-list-ajax-<%= review.id %>">
         <%= render review.comments.order(:created_at).reverse_order %>
       </div>
     </div>
+    
 </div>
 <script>
 $(document).ready(function(){

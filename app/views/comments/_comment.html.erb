@@ -20,7 +20,8 @@
     <div class="comment col-lg-10">
     <%= comment.content %>
     </div>
-    <div class="like-area" >
+    
+    <div class="like-area" style="margin-left:5px" >
       <% if current_user %>
         <% if current_user.voted_for? comment %>
           <%= link_to "Unlike", unlike_comment_path(comment), class: 'vote-comment', method: :put, remote: true, data: { toggle_text: 'Like', toggle_href: like_review_path(comment), id: comment.id} %>
