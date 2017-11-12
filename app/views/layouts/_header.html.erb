@@ -11,9 +11,10 @@
           <%= text_field_tag :search, params[:search], autocorrect: false,
             class: "typeahead_input",
             placeholder: "Places or Username or Tags", spellcheck: false %>
-        <% end %>
+       
       </div>
-      <button class="search-btn">Search</button>
+          <%= submit_tag "Search", class: "search-btn"%>
+        <% end %>
 
 
       </div>
