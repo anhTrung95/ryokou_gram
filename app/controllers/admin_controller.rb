@@ -12,9 +12,11 @@ class AdminController < ApplicationController
     private
     
     def admin
-        return if current_user.admin
+        return if user_signed_in?
+            if current_user.admin
         
-        flash[:danger] = "You're not admin"
-        redirect_to root_url
+            flash[:danger] = "You're not admin"
+            redirect_to root_url
+        end
     end
 end
