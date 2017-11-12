@@ -1,4 +1,4 @@
-<div class="border-form-div">
+<div class="border-form-div" style="max-width:40%">
 <h1>Edit place</h1>
 
 <%= form_for @place, html: { multipart: true } do |f| %>
@@ -25,9 +25,14 @@
 
   <div class="place-image">
     <% @place_existed_photos.each do |p| %>
+     <div><br/></div>
       <%= image_tag p.photo_url %>
+      <div><br/></div>
+      <div style ="float:right">
       <%= link_to "Edit Photo", edit_place_photo_path(p) %>
       <%= link_to "Destroy", place_photo_path(p), method: :delete%>
+      </div>
+      <div><br/></div>
     <% end %>
   </div>
   <%= f.fields_for :place_photo do |p| %>
