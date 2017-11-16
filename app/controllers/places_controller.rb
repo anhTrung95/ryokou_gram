@@ -12,7 +12,7 @@ class PlacesController < ApplicationController
     @place = Place.new
     @place_photo = @place.place_photos.build
   end
-
+  
   def create
     @place = Place.new(place_params)
     if @place.save
@@ -89,4 +89,5 @@ class PlacesController < ApplicationController
     def place_params
       params.require(:place).permit(:name, :address, :point, place_photos_attributes: [:id, :place_id, :photo])
     end
+    
 end
