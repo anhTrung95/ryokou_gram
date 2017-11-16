@@ -49,6 +49,7 @@
       </span>
     </div>
   </div>
+  
   <div class="fixed-bottom review-footer">
     <span style="float: left">On <%= link_to review.place.name, review.place %> <%= time_ago_in_words(review.created_at) %> ago</span>
     <% if user_signed_in? %>
@@ -59,7 +60,8 @@
     <% end %>
   </div>
   <br/>
-  
+ <iframe src="https://www.facebook.com/plugins/share_button.php?href=<%= u url_for([review, {only_path: false}]) %>&layout=button&size=large&mobile_iframe=false&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+   
  
     <h2 id="comment-count-<%= review.id %>">Comment (<%= review.comments.count %>)</h2>
     <% if user_signed_in? %>
@@ -70,12 +72,14 @@
     <% else %>
     <h4>You need to sign in to comment</h4>
     <% end %>
+   
     <center><a id="show-comments-<%= review.id%>">Show all comments</a></center>
      <div id="review-comments-<%= review.id%>" style="display: none">
       <div id="comment-list-ajax-<%= review.id %>">
         <%= render review.comments.order(:created_at).reverse_order %>
       </div>
     </div>
+    
 </div>
 <script>
 $(document).ready(function(){

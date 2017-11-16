@@ -43,7 +43,11 @@ class ReviewsController < ApplicationController
       redirect_to :back
     end
   end
-
+  
+    def show
+      @reviews = Review.find(params[:id])
+    end
+    
   def unlike
     @review = Review.find_by id: params[:id]
     @review.unliked_by current_user
@@ -53,7 +57,7 @@ class ReviewsController < ApplicationController
       redirect_to :back
     end
   end
-
+  
   private
 
     def review_params
@@ -63,4 +67,6 @@ class ReviewsController < ApplicationController
     def set_review
       @review = Review.find(params[:id])
     end
+    
+   
 end
