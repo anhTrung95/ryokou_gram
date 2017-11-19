@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   get 'static_pages/feed'
   root 'static_pages#home'
-  devise_for :users
+  devise_for :users,
+    controllers:{omniauth_callbacks: "users/omniauth_callbacks"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   resources :users do
@@ -39,7 +40,7 @@ Rails.application.routes.draw do
   resources :tags, only: [:index, :show]
   resources :relationships, only: [:create, :destroy]
   resources :searches
-
+   
   # Example resource route with options:
   #   resources :products do
   #     member do
