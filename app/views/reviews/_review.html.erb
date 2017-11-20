@@ -55,9 +55,9 @@
     <% end %>
   </div>
   <br/>
- <iframe src="https://www.facebook.com/plugins/share_button.php?href=<%= u url_for([review, {only_path: false}]) %>&layout=button&size=large&mobile_iframe=false&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-   
- 
+ <div style="width:100%; min-height:30px">
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=<%= u url_for([review, {only_path: false}]) %>&layout=button&size=large&mobile_iframe=false&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden;float:right" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+  </div>
     <h2 id="comment-count-<%= review.id %>">Comment (<%= review.comments.count %>)</h2>
     <% if user_signed_in? %>
     <div id="comment-form-ajax-<%= review.id %>">
@@ -96,7 +96,7 @@ $(document).ready(function(){
     });
     
     // Configure/customize these variables.
-    var showChar = 250;  // How many characters are shown by default
+    var showChar = 270;  // How many characters are shown by default
     var ellipsestext = "...";
     var moretext = "Show more >";
     var lesstext = "Show less";
