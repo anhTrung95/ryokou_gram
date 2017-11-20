@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20171119055809) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "point",      default: 0
+    t.string   "images"
   end
 
   create_table "relationships", force: :cascade do |t|
