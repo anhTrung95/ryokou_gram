@@ -19,13 +19,8 @@
           </div>
         </div>
         <div class="media-left" style="width: 100%">
-          <div class="content-box">
-            <% if review.content.length > 250 %>
-              <%= truncate(review.content, length: 250) %>
-              <%= link_to '...Read more', '', class: "read-more-review-#{review.id}" %>
-            <% else %>
-              <%= review.content %>
-            <% end %>
+          <div class="content-box" id="ajax-content-<%= review.id %>">
+            <%= review.content %>
           </div>
           <div class="content-box" style="text-align: left; bottom: 0px">
             Tags:   <span><%= render review.tags %></span>
@@ -99,9 +94,40 @@ $(document).ready(function(){
           $(this).text("Hide all comments");
         else  $(this).text("Show all comments");
     });
+    
+    // Configure/customize these variables.
+    var showChar = 250;  // How many characters are shown by default
+    var ellipsestext = "...";
+    var moretext = "Show more >";
+    var lesstext = "Show less";
+    
+
+    $('#ajax-content-<%= review.id %>').each(function() {
+        var content = $(this).html();
+ 
+        if(content.length > showChar) {
+ 
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+ 
+            var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+ 
+            $(this).html(html);
+        }
+ 
+    });
+ 
+    $(".morelink").click(function(){
+        if($(this).hasClass("less")) {
+            $(this).removeClass("less");
+            $(this).html(moretext);
+        } else {
+            $(this).addClass("less");
+            $(this).html(lesstext);
+        }
+        $(this).parent().prev().toggle();
+        $(this).prev().toggle();
+        return false;
+    });
 });
-$('.read-more-review-<%= review.id %>').on('click', function(e) {
-        e.preventDefault()
-        $(this).parent().html('<%= escape_javascript review.content %>')
-      })
 </script>
