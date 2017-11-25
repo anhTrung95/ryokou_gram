@@ -60,10 +60,11 @@
     <% end %>
   </div>
   <br/>
-  
- <iframe src="https://www.facebook.com/plugins/share_button.php?href=<%= u url_for([review, {only_path: false}]) %>&layout=button&size=large&mobile_iframe=false&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-   
- 
+
+ <div style="width:100%; min-height:30px">
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=<%= u url_for([review, {only_path: false}]) %>&layout=button&size=large&mobile_iframe=false&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden;float:right" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+  </div>
+
     <h2 id="comment-count-<%= review.id %>">Comment (<%= review.comments.count %>)</h2>
     <% if user_signed_in? %>
     <div id="comment-form-ajax-<%= review.id %>">
@@ -100,6 +101,44 @@ $(document).ready(function(){
           $(this).text("Hide all comments");
         else  $(this).text("Show all comments");
     });
+<<<<<<< HEAD
+=======
+    
+    // Configure/customize these variables.
+    var showChar = 270;  // How many characters are shown by default
+    var ellipsestext = "...";
+    var moretext = "Show more >";
+    var lesstext = "Show less";
+    
+
+    $('#ajax-content-<%= review.id %>').each(function() {
+        var content = $(this).html();
+ 
+        if(content.length > showChar) {
+ 
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+ 
+            var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+ 
+            $(this).html(html);
+        }
+ 
+    });
+ 
+    $(".morelink").click(function(){
+        if($(this).hasClass("less")) {
+            $(this).removeClass("less");
+            $(this).html(moretext);
+        } else {
+            $(this).addClass("less");
+            $(this).html(lesstext);
+        }
+        $(this).parent().prev().toggle();
+        $(this).prev().toggle();
+        return false;
+    });
+>>>>>>> a0e7fc9cc799931924199729f0c00f89ba5edd42
 });
 $('.read-more-review-<%= review.id %>').on('click', function(e) {
         e.preventDefault()

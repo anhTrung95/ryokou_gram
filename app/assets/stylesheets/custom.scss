@@ -83,3 +83,12 @@ p {
 .users.follow {
   padding: 0;
 }
+
+.alert {
+  background-color: white !important;
+  border-color: black !important;
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+}
