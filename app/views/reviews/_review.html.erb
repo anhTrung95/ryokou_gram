@@ -19,8 +19,13 @@
           </div>
         </div>
         <div class="media-left" style="width: 100%">
-          <div class="content-box" id="ajax-content-<%= review.id %>">
-            <%= review.content %>
+          <div class="content-box">
+            <% if review.content.length > 250 %>
+              <%= truncate(review.content, length: 250) %>
+              <%= link_to '...Read more', '', class: "read-more-review-#{review.id}" %>
+            <% else %>
+              <%= review.content %>
+            <% end %>
           </div>
           <div class="content-box" style="text-align: left; bottom: 0px">
             Tags:   <span><%= render review.tags %></span>
@@ -55,9 +60,11 @@
     <% end %>
   </div>
   <br/>
+
  <div style="width:100%; min-height:30px">
     <iframe src="https://www.facebook.com/plugins/share_button.php?href=<%= u url_for([review, {only_path: false}]) %>&layout=button&size=large&mobile_iframe=false&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden;float:right" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
   </div>
+
     <h2 id="comment-count-<%= review.id %>">Comment (<%= review.comments.count %>)</h2>
     <% if user_signed_in? %>
     <div id="comment-form-ajax-<%= review.id %>">
@@ -94,6 +101,7 @@ $(document).ready(function(){
           $(this).text("Hide all comments");
         else  $(this).text("Show all comments");
     });
+
     
     // Configure/customize these variables.
     var showChar = 270;  // How many characters are shown by default
@@ -129,5 +137,10 @@ $(document).ready(function(){
         $(this).prev().toggle();
         return false;
     });
+
 });
+$('.read-more-review-<%= review.id %>').on('click', function(e) {
+        e.preventDefault()
+        $(this).parent().html('<%= escape_javascript review.content %>')
+      })
 </script>

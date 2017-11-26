@@ -19,16 +19,24 @@
   <!--<strong>Image:</strong>-->
   <br/>
    <% if !@place_photos.empty? %>
-   <div class="place-image">
-  	 <div class="w3-content w3-display-container">
-	    <% @place_photos.each do |p| %>
-	      <%= image_tag p.photo_url, :class => "image-slide" %>
-	    <% end %>
-	     <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-	  	 <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
-     </div>
-    
-   </div>
+   <div id="sliderFrame">
+        <div id="slider">
+           
+            <% @place_photos.each do |p| %>
+	      		<a class="lazyImage" href="<%= p.photo_url %>"></a>
+	    	<% end %>
+        </div>
+       
+                
+        <!--thumbnails-->
+        <div id="thumbs">
+            
+           
+            <% @place_photos.each do |p| %>
+	      		<div class="thumb"><img src="<%= p.photo_url %>" /></div>
+	    	<% end %>
+        </div>
+    </div>
   <% end %>
 </p>
 <!--</div>-->
@@ -197,6 +205,11 @@
 </div>
 <% end %>
 </div>
+
+
+   
+
+   
 
 <script>
     $('.review-rating').raty({
