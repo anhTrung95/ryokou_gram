@@ -85,10 +85,9 @@ p {
 }
 
 .alert {
-  background-color: white !important;
-  border-color: black !important;
+  border: none;
   display: inline-block;
   position: fixed;
-  bottom: 20px;
+  top: 80px;
   right: 30px;
 }
