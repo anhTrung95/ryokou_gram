@@ -12,6 +12,7 @@ class StaticPagesController < ApplicationController
       p.update_point
     end
     @users = User.where(admin: false)
+    @rank_place = 1
   end
 
   def feed

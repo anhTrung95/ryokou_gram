@@ -18,33 +18,42 @@
   </div>
 
 
-
+<div style="background-color: #E4E7EE">
 <div class="row">
   <div class="col-lg-1"></div>
 <div class="col-lg-3">
-  <div class="best-place" >
+  <div class="top-list">
       <h2>Best places</h2>
       	<div class="row">
-  		<% a=@places.sort_by{ |f| [f.point/((f.reviews.count.round(1)==0)? 1 : (f.reviews.count.round(1)).round(1))] }.reverse.first(4) %>
+  		<% a=@places.sort_by{ |f| [f.point/((f.reviews.count.round(1)==0)? 1 : (f.reviews.count.round(1)).round(1))] }.reverse.first(5) %>
   		<% a.each do |f| %>
   
   			
   			  <a class="place-link" href="/places/<%= f.id %>">
-  			    <div class="card">
-  				   
-  				      <div class="place-container">
-  				        <h4><b><%= f.name %></b></h4>
+  			    <div class="rank-detail">
+  			      <div class="rank-image-container">
+  			        <%= image_tag f.place_photos.first.photo if f.place_photos.exists? %>
+  			      </div>
+  			      <div class="row">
+  			        <div class="col-lg-10">
+  				     		<h4><b><%= f.name %></b></h4>
   				        <p><%= f.address %></p>
-  				          <%= f.reviews.count %> reviews
+  				           <%= (f.point/f.reviews.count.round(1)).round(1) %> / <%= f.reviews.count %> reviews
   				        <% if f.reviews.count != 0 %>
   				         <div class="review-rating" data-score=<%= (f.point/f.reviews.count.round(1)).round(1) %> ></div>
-  				          <p><%= (f.point/f.reviews.count.round(1)).round(1) %></p>
+  				         
   				        <% else %>
   				           <div class="review-rating" data-score="0"></div>
   				          <p>0</p>
   				        <% end %>
   				      </div>
-  			  
+  				      <div class="col-lg-2">
+  				        <div class="rank">
+  				        <%= @rank_place %>
+  				        <% @rank_place += 1%>
+  				        </div>
+  				      </div>
+  			    	</div>
   			   </a>
        	   </div>
   		<% end %>
@@ -66,20 +75,20 @@
  
 </div>
 <div class="col-lg-3">
-<div class="best-user">
+<div class="top-list">
      <h2>User to follow</h2>
      	<div class="row">
-        <% u=@users.reject{|u| u == current_user}.sort_by{|t| [t.reviews.count]}.reverse.first(4) %>
+        <% u=@users.reject{|u| u == current_user}.sort_by{|t| [t.reviews.count]}.reverse.first(5) %>
 		<% u.each do |f| %>
 
           
-			    <div class="card">
+			    <div class="user-rank-detail">
 			    <a href="/users/<%= f.id %>">
 			      <div class="row">
-			        <div class="col-lg-3">
+			        <div class="col-lg-4">
 				    <div class ="size-40" ><%= image_tag (f.avatar.url) if f.avatar %></div>
 				    </div>
-				    <div class="col-lg-9 user-container" style="margin-top:-20px">
+				    <div class="col-lg-8 user-container" style="margin-top:-20px">
 				        <h3 style="float:left"><b><%= f.name %></b></h3>
 
             <div class="">
@@ -109,7 +118,7 @@
   <div class="col-lg-1"></div>
 
 </div>
-
+</div>
 </html>
 
 <!--them ti style-->

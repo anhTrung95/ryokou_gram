@@ -109,3 +109,77 @@
     text-decoration: none !important;
 
 }
+
+.rank-detail {
+  min-height: 100px;
+  padding: 8px 8px 13px 180px;
+  width: 100%;
+  clear: both;
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.top-list {
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #d6dee5;
+  margin: 10px 0;
+  padding: 0;
+  box-shadow: 0 1px 1px 1px rgba(0,0,0,0.1);
+}
+
+.top-list h2 {
+  border-radius: 2px 2px 0 0;
+  margin: 2px 2px 0;
+  padding: 0 5px;
+  line-height: 2;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #eef0f3;
+}
+
+.top-list {
+    h4, p {
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+}
+
+.top-list .rank {
+  float: right;
+  margin-left: 4px;
+  font-size: 46px;
+  line-height: 1;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: #c6c6c6;
+  padding: 0 12px 0 0;
+  border: 0;
+}
+
+.rank-image-container {
+
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 160px;
+    text-align: center;
+    margin: 0;
+    padding: 10px 1px 1px 20px;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+.rank-image-container img {
+  width: 100%;
+  height: auto;
+  min-height: 56.25%;
+}
+
+.user-rank-detail {
+  width:100%; 
+  padding: 5px 30px;
+}
