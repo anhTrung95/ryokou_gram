@@ -16,56 +16,81 @@
   <% end %>
   </div>
   </div>
-<div class="container">
 
 
 
-
-<div class="best-place">
-    <h2>Best places</h2>
-    	<div class="row">
-		<% a=@places.sort_by{ |f| [f.point/((f.reviews.count.round(1)==0)? 1 : (f.reviews.count.round(1)).round(1))] }.reverse.first(4) %>
-		<% a.each do |f| %>
-
-			<div class="col-md-3">
-			  <a class="place-link" href="/places/<%= f.id %>">
-			    <div class="card">
-				    <div class ="image-size" ><%= image_tag f.place_photos.first.photo if f.place_photos.exists? %></div>
-				      <div class="place-container">
-				        <h4><b><%= f.name %></b></h4>
-				        <p><%= f.address %></p>
-				          <%= f.reviews.count %> reviews
-				        <% if f.reviews.count != 0 %>
-				         <div class="review-rating" data-score=<%= (f.point/f.reviews.count.round(1)).round(1) %> ></div>
-				          <p><%= (f.point/f.reviews.count.round(1)).round(1) %></p>
-				        <% else %>
-				           <div class="review-rating" data-score="0"></div>
-				          <p>0</p>
-				        <% end %>
-				      </div>
-			    </div>
-			   </a>
-     	   </div>
-		<% end %>
-
-	</div>
+<div class="row">
+  <div class="col-lg-1"></div>
+<div class="col-lg-3">
+  <div class="best-place" >
+      <h2>Best places</h2>
+      	<div class="row">
+  		<% a=@places.sort_by{ |f| [f.point/((f.reviews.count.round(1)==0)? 1 : (f.reviews.count.round(1)).round(1))] }.reverse.first(4) %>
+  		<% a.each do |f| %>
+  
+  			
+  			  <a class="place-link" href="/places/<%= f.id %>">
+  			    <div class="card">
+  				   
+  				      <div class="place-container">
+  				        <h4><b><%= f.name %></b></h4>
+  				        <p><%= f.address %></p>
+  				          <%= f.reviews.count %> reviews
+  				        <% if f.reviews.count != 0 %>
+  				         <div class="review-rating" data-score=<%= (f.point/f.reviews.count.round(1)).round(1) %> ></div>
+  				          <p><%= (f.point/f.reviews.count.round(1)).round(1) %></p>
+  				        <% else %>
+  				           <div class="review-rating" data-score="0"></div>
+  				          <p>0</p>
+  				        <% end %>
+  				      </div>
+  			  
+  			   </a>
+       	   </div>
+  		<% end %>
+  
+  	</div>
+  </div>
 </div>
+
+<div class="col-lg-4">
+  
+  <% if !@reviews.nil? %>
+  <h2>Recent reviews</h2>
+    <% @reviews.each do |f| %>
+    <%= render partial: 'reviews/review_following', :locals => {:review => f} %>
+    <% end %>
+ 
+    <%= will_paginate @reviews %>
+  <% end %>
+ 
+</div>
+<div class="col-lg-3">
 <div class="best-user">
      <h2>User to follow</h2>
      	<div class="row">
         <% u=@users.reject{|u| u == current_user}.sort_by{|t| [t.reviews.count]}.reverse.first(4) %>
 		<% u.each do |f| %>
 
-            <div class="col-md-3">
+          
 			    <div class="card">
 			    <a href="/users/<%= f.id %>">
-				    <div class ="avt-rounded" ><%= image_tag (f.avatar.url) if f.avatar %></div>
-				    <div class="user-container">
-				        <h3><b><%= f.name %></b></h3>
+			      <div class="row">
+			        <div class="col-lg-3">
+				    <div class ="size-40" ><%= image_tag (f.avatar.url) if f.avatar %></div>
+				    </div>
+				    <div class="col-lg-9 user-container" style="margin-top:-20px">
+				        <h3 style="float:left"><b><%= f.name %></b></h3>
 
+            <div class="">
+				      <div><%= render partial: 'shared/user_stats', :locals => {:@user => f} %></div><br/><br/><br/><br/>
+				      <div><%= render partial: 'shared/stats', :locals => {:@user => f} %></div>
+				    </div>
+				    </div>
+				    
 				    </div>
 				</a>
-				       <%= render partial: 'shared/user_stats', :locals => {:@user => f} %>
+				       
 				    <div>
 				      <% if user_signed_in? && f.admin != true %>
 				      <%= render partial: 'users/follow_form', :locals => {:@user => f} %>
@@ -75,22 +100,14 @@
 
 			   <br/>
 
-      		</div>
+      	
         <% end %>
 	</div>
 
+</div>
+</div>
+  <div class="col-lg-1"></div>
 
-</div>
-<div>
-  <% if !@reviews.nil? %>
-  <div class="row">
-    <% @reviews.each do |f| %>
-    <%= render partial: 'reviews/review_following', :locals => {:review => f} %>
-    <% end %>
-  </div>
-    <%= will_paginate @reviews %>
-  <% end %>
-</div>
 </div>
 
 </html>
@@ -143,6 +160,7 @@
 .best-place{
     /*margin-top: 500%;*/
     color:black;
+    margin-left: 15px;
 }
 .first-part{
     height:350px;
@@ -154,6 +172,17 @@
     color: white;
     width: 100%;
 
+}
+.size-40 img{
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+}
+.user-card-stats {
+  position: absolute;
+  margin-top: 45px;
+  margin-left: 0px;
+  margin-bottom: 30px;
 }
 </style>
 <script>
