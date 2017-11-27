@@ -1,5 +1,5 @@
 
-<div class="border-form-div">
+<div class="border-form-div" style="background-color: #E4E7EE;">
   <h1>Sign in</h1>
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
     <%= f.label :email %><br/>
@@ -18,4 +18,16 @@
   <% end %>
     <br/>
   <%= render "devise/shared/links" %>
+  <a href="/users/auth/facebook">
+    <img src="/assets/fb.png" style="max-width:45px;height:auto;"/>
+  </a>
+   <a href="/users/auth/google_oauth2">
+    <img src="/assets/google.jpg" style="max-width:45px;height:auto;border-radius:50%;"/>
+  </a>
 </div>
+
+<style>
+  a:hover {
+    text-decoration: none;
+  }
+</style>
