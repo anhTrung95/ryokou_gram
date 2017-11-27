@@ -20,12 +20,9 @@
         </div>
         <div class="media-left" style="width: 100%">
           <div class="content-box">
-            <% if review.content.length > 250 %>
-              <%= truncate(review.content, length: 250) %>
-              <%= link_to '...Read more', '', class: "read-more-review-#{review.id}" %>
-            <% else %>
+            <span id="ajax-content-<%= review.id %>">
               <%= review.content %>
-            <% end %>
+            </span>
           </div>
           <div class="content-box" style="text-align: left; bottom: 0px">
             Tags:   <span><%= render review.tags %></span>
@@ -118,19 +115,22 @@ $(document).ready(function(){
             var c = content.substr(0, showChar);
             var h = content.substr(showChar, content.length - showChar);
  
-            var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+            var html = c + '<span class="moreellipses">' + ellipsestext+ 
+            '&nbsp;</span><span class="morecontent"><span>' + h + 
+            '</span>&nbsp;&nbsp;<a href="" class="morelink-<%= review.id %>">' + moretext + 
+            '</a></span>';
  
             $(this).html(html);
         }
  
     });
  
-    $(".morelink").click(function(){
-        if($(this).hasClass("less")) {
-            $(this).removeClass("less");
+    $(".morelink-<%= review.id %>").click(function(){
+        if($(this).hasClass("less-<%= review.id %>")) {
+            $(this).removeClass("less-<%= review.id %>");
             $(this).html(moretext);
         } else {
-            $(this).addClass("less");
+            $(this).addClass("less-<%= review.id %>");
             $(this).html(lesstext);
         }
         $(this).parent().prev().toggle();
@@ -139,8 +139,4 @@ $(document).ready(function(){
     });
 
 });
-$('.read-more-review-<%= review.id %>').on('click', function(e) {
-        e.preventDefault()
-        $(this).parent().html('<%= escape_javascript review.content %>')
-      })
 </script>
