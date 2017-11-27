@@ -48,7 +48,7 @@
     /* Add shadows to create the "card" effect */
     width: 95%;
     height: 80%;
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1);
     transition: 0.3s;
     background-color: #ffffff;
     border-radius: 3px;
@@ -65,7 +65,7 @@
 
 /* On mouse-over, add a deeper shadow */
 .card:hover {
-    box-shadow: 0 3px 6px 3px rgba(0,0,0,0.3);
+    box-shadow: 0 3px 3px 3px rgba(0,0,0,0.2);
     text-decoration: none;
 }
 
