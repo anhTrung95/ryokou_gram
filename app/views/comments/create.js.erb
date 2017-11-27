@@ -1,4 +1,9 @@
 $('#comment-form-ajax-<%= @review.id %>').html('<%= j render 'comments/form', :@comment => Comment.new, :review => @review %>');
 $('#comment-list-ajax-<%= @review.id %>').prepend('<%= j render @new_comment %>');
 $('#comment-count-<%= @review.id %>').html('Comment (<%= @review.comments.count %>)');
-$('#si-comments-<%= @review.id %>').html('<%= @review.comments.count %>')
+$('#si-comments-<%= @review.id %>').html('<%= @review.comments.count %>');
+if ($("#show-comments-<%= @review.id%>").text()=="Show all comments")
+{
+   $("#show-comments-<%= @review.id%>").text("Hide all comments");
+   $("#review-comments-<%= @review.id%>").toggle();
+}
