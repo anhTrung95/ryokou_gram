@@ -3,7 +3,11 @@
   <div class="media">
     <div class="media-left media-top">
       <div class="size-100">
-        <%= image_tag (review.user.avatar.url) if review.user.avatar %>
+       <% if review.user.avatar_facebook? %>
+                 <%= image_tag (review.user.avatar_facebook)%>
+                <% else %>
+                  <%= image_tag (review.user.avatar.url) if review.user.avatar %>
+                <% end %>
       </div>
     </div>
     <div class="media-body">

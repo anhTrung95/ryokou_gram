@@ -15,7 +15,13 @@
 			  <a href="/users/<%= f.id %>">
 			    <div class="card">
 			    
-				    <div class ="avt-rounded" ><%= image_tag (f.avatar.url) if f.avatar %></div>
+				    <div class ="avt-rounded" >
+ 						<% if f.avatar_facebook? %>
+                 			<%= image_tag (f.avatar_facebook)%>
+                		<% else %>
+                  			<%= image_tag (f.avatar.url) if f.avatar %>
+                		<% end %>				    	
+                		</div>
 				      <div class="user-container">
 				        <h4><b><%= f.name %></b></h4>
 				        <p><%= f.email %></p>
