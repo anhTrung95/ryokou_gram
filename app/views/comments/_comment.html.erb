@@ -5,7 +5,11 @@
        <div class="row">
          <div class="col-lg-3">
            <div class="avt-navbar">
-            <%= image_tag (comment.user.avatar.url) if comment.user.avatar %>
+            <% if comment.user.avatar_facebook? %>
+                 <%= image_tag (comment.user.avatar_facebook)%>
+                <% else %>
+                  <%= image_tag (comment.user.avatar.url) if comment.user.avatar %>
+                <% end %>
            </div>
          </div>
 

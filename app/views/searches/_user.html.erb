@@ -2,7 +2,11 @@
   <a href="/users/<%= user.id %>">
     <div class="card">
       <div class ="avt-rounded" >
-        <%= image_tag (user.avatar.url) if user.avatar %>
+        <% if user.avatar_facebook? %>
+                 <%= image_tag (user.avatar_facebook)%>
+                <% else %>
+                  <%= image_tag (user.avatar.url) if user.avatar %>
+                <% end %>
       </div>
       <div class="user-container">
         <h4><b><%= user.name %></b></h4>
