@@ -19,6 +19,12 @@ class StaticPagesController < ApplicationController
   end
   
   def most_home
+    @places = Place.all
+    @places.each do |p|
+      p.update_point
+    end
+    @users = User.where(admin: false)
+    @rank_place = 1
   end
 
   def feed

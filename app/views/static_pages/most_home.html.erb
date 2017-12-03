@@ -1,1 +1,157 @@
-<h1> Most home</h1>
+<html>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="first-part">
+    <img src="/assets/back_frontpage.jpg" style='position:absolute;top:0px;left:0px;width:100%;height:400px;z-index:-1;'>
+     <div class="welcome">
+     
+    <h1>Welcome to RyokouGram</h1>
+    <a href="<%=new_user_registration_path %>" class="button reg_button">Register Now!</a>
+
+  </div>
+  </div>
+  <div style="background-color: #E4E7EE">
+<div class="container">
+
+
+
+
+<div class="best-place">
+    <h2>Best places</h2>
+    	<div class="row">
+		<% a=@places.sort_by{ |f| [f.point/((f.reviews.count.round(1)==0)? 1 : (f.reviews.count.round(1)).round(1))] }.reverse.first(4) %>
+		<% a.each do |f| %>
+
+			<div class="col-md-3">
+			  <a class="place-link" href="/places/<%= f.id %>">
+			    <div class="card">
+				    <div class ="image-size" ><%= image_tag f.place_photos.first.photo if f.place_photos.exists? %></div>
+				      <div class="place-container">
+				        <h4><b><%= f.name %></b></h4>
+				        <p><%= f.address %></p>
+				          <%= f.reviews.count %> reviews
+				        <% if f.reviews.count != 0 %>
+				         <div class="review-rating" data-score=<%= (f.point/f.reviews.count.round(1)).round(1) %> ></div>
+				          <p><%= (f.point/f.reviews.count.round(1)).round(1) %></p>
+				        <% else %>
+				           <div class="review-rating" data-score="0"></div>
+				          <p>0</p>
+				        <% end %>
+				      </div>
+			    </div>
+			   </a>
+     	   </div>
+		<% end %>
+
+	</div>
+</div>
+<div class="best-user">
+     <h2>User to follow</h2>
+     	<div class="row">
+        <% u=@users.reject{|u| u == current_user}.sort_by{|t| [t.reviews.count]}.reverse.first(4) %>
+		<% u.each do |f| %>
+
+            <div class="col-md-3">
+			    <div class="card">
+			    <a href="/users/<%= f.id %>">
+				    <div class ="avt-rounded" ><%= image_tag (f.avatar.url) if f.avatar %></div>
+				    <div class="user-container">
+				        <h3><b><%= f.name %></b></h3>
+
+				    </div>
+				</a>
+				       <center class="user-stats-home"><%= render partial: 'shared/user_stats', :locals => {:@user => f} %> </center>
+				    <div><br/></div>
+			    </div>
+
+			   <br/>
+
+      		</div>
+        <% end %>
+	</div>
+
+</div>
+</div>
+</html>
+<style>
+  .container {
+    position: relative;
+    text-align: center;
+    color: black;
+}
+
+.centered {
+    position: initial;
+    top: 100%;
+    left: 100%;
+    bottom: 50%;
+    transform: translate(-50%, -50%);
+}
+.button {
+    height: 48px;
+    border-radius: 24px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 12px 32px;
+    text-align: center;
+    vertical-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.reg_button{
+    position: absolute;
+    left: 50%;
+    margin-left: -100px;
+  background-color: #4CAF50;
+  color: white;
+  border: 2px solid #4CAF50
+}
+.reg_button:hover{
+  background-color: transparent;
+  color: #4CAF50;
+  border: 2px solid #4CAF50;
+}
+.best-place{
+    /*margin-top: 500%;*/
+    color:black;
+    margin-left: 15px;
+}
+.first-part{
+    height:350px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.welcome{
+        position: absolute;
+    top: 15%;
+    color: white;
+    width: 100%;
+
+}
+.size-40 img{
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+}
+.user-card-stats {
+  position: absolute;
+  margin-top: 45px;
+  margin-left: 0px;
+  margin-bottom: 30px;
+}
+</style>
+<script>
+    $('.review-rating').raty({
+      readOnly: true,
+      score: function(){
+          return $(this).attr('data-score');
+      },
+      precision  : true,
+      path: '/assets/'
+
+    });
+</script>

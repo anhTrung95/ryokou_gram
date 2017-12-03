@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20171128055242) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "point",      default: 0
-    t.string   "images"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -51,7 +50,7 @@ ActiveRecord::Schema.define(version: 20171128055242) do
 
   create_table "reviews", force: :cascade do |t|
     t.text     "content"
-    t.integer  "rate",       null: false
+    t.integer  "rate"
     t.integer  "user_id"
     t.integer  "place_id"
     t.datetime "created_at", null: false
@@ -60,7 +59,6 @@ ActiveRecord::Schema.define(version: 20171128055242) do
 
   add_index "reviews", ["place_id"], name: "index_reviews_on_place_id"
   add_index "reviews", ["user_id", "place_id", "created_at"], name: "index_reviews_on_user_id_and_place_id_and_created_at"
-  add_index "reviews", ["user_id", "place_id"], name: "index_reviews_on_user_id_and_place_id", unique: true
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
 
   create_table "taggings", force: :cascade do |t|
@@ -110,6 +108,8 @@ ActiveRecord::Schema.define(version: 20171128055242) do
     t.string   "avatar"
     t.string   "uid"
     t.string   "provider"
+    t.string   "token"
+    t.datetime "token_expiry"
     t.string   "avatar_facebook"
   end
 
