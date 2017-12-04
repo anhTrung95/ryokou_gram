@@ -204,8 +204,10 @@ div.tab button.active {
         <h3><%= link_to f.place.name, f.place%></h3>
       </div>
       <div class="col-lg-4">
-        <% if f.content.length > 100 %>
-        <%= truncate(f.content, length: 100) %>
+        <% if f.content.length > 50 %>
+        <%= truncate(f.content, length: 50) %>
+        <% else %>
+        <%= f.content %>
         <% end %>
       </div>
       <div class="col-lg-1">
