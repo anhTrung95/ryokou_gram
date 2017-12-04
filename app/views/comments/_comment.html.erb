@@ -14,7 +14,7 @@
          </div>
 
         <div class="comment col-lg-9">
-      <strong style="overflow-x: hidden"><%= link_to comment.user.name, comment.user %>:</strong>
+      <strong><%= link_to truncate(comment.user.name, :length => 10), comment.user %>:</strong>
       </div>
       </div>
         <div class="comment-time" style="float: left;font-size: 13px;">
