@@ -93,7 +93,7 @@ div.tab button.active {
 
 <div class="tab">
   <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
-  <button class="tablinks" onclick="openCity(event, 'UsersList')">Users List</button>
+  <button class="tablinks" onclick="openCity(event, 'UsersList')" id="defaultOpen">Users List</button>
   <button class="tablinks" onclick="openCity(event, 'PlacesList')">Places List</button>
   <button class="tablinks" onclick="openCity(event, 'ReviewsList')">Reviews List</button>
 </div>
@@ -238,6 +238,7 @@ function w3_open() {
   document.getElementById("mySidebar").style.display = "block";
   document.getElementById("openNav").style.display = 'none';
 }
+document.getElementById("defaultOpen").click();
 function w3_close() {
   document.getElementById("main").style.marginLeft = "0%";
   document.getElementById("mySidebar").style.display = "none";
